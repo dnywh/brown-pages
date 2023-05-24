@@ -1,0 +1,12 @@
+{% extends "layouts/base.njk" %}
+{% block bodyContent %}
+<main>
+    <ul>
+        {% for item in collections.publicPlaces %}
+        <li>
+            <a href="{{ item.url }}">{{ item.data.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</main>
+{% endblock %}

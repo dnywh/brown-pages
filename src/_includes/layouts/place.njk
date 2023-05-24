@@ -1,0 +1,9 @@
+{% extends "layouts/base.njk" %}
+
+{% block bodyContent %}
+<main>
+{{ content | safe }}
+
+{% include "partials/sharewaste.html" %}
+</main>
+{% endblock %}

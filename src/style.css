@@ -1,0 +1,12 @@
+body {
+  color: brown;
+}
+
+figure {
+  max-width: 680px;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+}
