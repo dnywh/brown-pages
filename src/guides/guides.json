@@ -2,5 +2,5 @@
   "layout": "layouts/guide.njk",
   "date": "Last Modified",
   "permalink": "/{{ country | slugify }}/{{ title | slugify }}",
-  "pageTitle": "How to compost in {{ title }}"
+  "tags": "guide"
 }

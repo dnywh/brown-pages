@@ -5,12 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   {# Title #}
-  {% if pageTitle %}
-    {% set dynamicTitle = pageTitle %}
+  {% if title === "Home" %}
+      {% set pageTitle = site.title + " — " + site.subtitle %}
+    {% elif tags[0] === "guide" %}
+      {% if prefix %}
+        {% set pageTitle = "How to compost in " + prefix + " " + title + " — " + site.title %}
+      {% else %}
+        {% set pageTitle = "How to compost in " + title + " — " + site.title %}
+      {% endif %}
     {% else %}
-      {% set dynamicTitle = site.title + " — " + site.subtitle %}
+      {% set pageTitle = title + " — " + site.title %}
     {% endif %}
-  <title>{{ dynamicTitle }}</title>
+  <title>{{ pageTitle }}</title>
   
   {# Author #}
   <meta name="author" content="{{ site.title }}" />

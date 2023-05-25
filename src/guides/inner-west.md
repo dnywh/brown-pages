@@ -1,6 +1,6 @@
 ---
 title: Inner West
-prefix: The
+prefix: the
 type: locality-council
 city: Sydney
 province: New South Wales
