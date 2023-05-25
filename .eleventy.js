@@ -14,8 +14,19 @@ module.exports = function (config) {
     // Date filter for last updated date on guides
     // https://11ty.rocks/eleventyjs/dates/#postdate-filter
     // https://moment.github.io/luxon/docs/class/src/datetime.js~DateTime.html
-    config.addFilter("relativeDate", (dateObj) => {
-        return DateTime.fromJSDate(dateObj).toRelative();
+    config.addFilter("guideDate", (dateObj) => {
+        // return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED);
+        // Actually just using same format as `generated` for now...
+        return new Intl.DateTimeFormat(
+            'en-GB', { dateStyle: 'full' }
+        ).format(dateObj);
+    });
+
+    config.addGlobalData('generated', () => {
+        let now = new Date();
+        return new Intl.DateTimeFormat(
+            'en-GB', { dateStyle: 'full' }
+        ).format(now);
     });
 
     // Make a collection of guides but only those that aren't marked as 'draft'
@@ -26,12 +37,6 @@ module.exports = function (config) {
             .filter(item => !Boolean(item.data.draft))
     });
 
-    config.addGlobalData('generated', () => {
-        let now = new Date();
-        return new Intl.DateTimeFormat(
-            'en-GB', { dateStyle: 'full' }
-        ).format(now);
-    });
 
     return {
         dir: {
