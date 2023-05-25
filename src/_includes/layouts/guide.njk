@@ -1,0 +1,16 @@
+{% extends "layouts/base.njk" %}
+
+{% block bodyContent %}
+
+    <h1><span>How to compost in </span><br>{{ title }}</h1>
+    <h2>Last updated {{ page.date | relativeDate }}</h2>
+    <a href="mailto:drafter_preempt0f@icloud.com?subject=Suggestion%20for%20{{ title }}&body=Thanks%20for%20contributing%20to%20Brown%20Pages.%20Please%20replace%20this%20text%20with%20what%20you%20think%20should%20be%20on%20the%20{{ title }}%20page.%20Include%20references%20and%20images%20where%20relevant.%0D%0A%0D%0AYou%20can%20find%20more%20guidance%20on%20our%20Contribute%20to%20Brown%20Pages%20page%2C%20here%3A%0D%0Ahttps%3A%2F%2Fbrownpages.org%2Fcontribute">Suggest an edit</a>
+
+    {{ content | safe }}
+
+    <aside>
+        <h2>Not enough to go on?</h2>
+        <p>Search the <a href="https://sharewaste.com/share-waste" target="_blank" rel="noopener">ShareWaste map</a> for individuals who open their backyard compost up to the public. Also check out our guide on <a href="/compost-at-home">how to compost at home</a>.</p>
+    </aside>
+
+{% endblock %}

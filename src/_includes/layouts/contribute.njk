@@ -1,0 +1,13 @@
+{% extends "layouts/base.njk" %}
+
+{% block bodyContent %}
+<h1>{{ title }}</h1>
+{{ content | safe }}
+
+<h2 id="contributors">Master composters</h2>
+<ul>
+{% for i in contributors %}
+<li>{{ i }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
