@@ -3,6 +3,8 @@ title: Buenos Aires
 type: city-whole
 province: Buenos Aires Province
 country: Argentina
+summary:
+  - Public organic drop-off points throughout the city, staffed during certain hours
 ---
 
 {% include "partials/no-residential-service.html" %}

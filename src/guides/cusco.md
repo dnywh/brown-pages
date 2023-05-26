@@ -3,6 +3,9 @@ title: Cusco
 type: city-whole
 province: Greater Cusco
 country: Peru
+summary:
+  - Public organic waste bins throughout town
+  - Private pickup options also available
 ---
 
 {% include "partials/no-residential-service.html" %}

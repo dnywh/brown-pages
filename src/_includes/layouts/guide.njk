@@ -6,11 +6,34 @@
 {% endblock %}
 
 {% block bodyContent %}
-
+<article>
     <h1><span>How to compost in {{ prefix }}</span><br>{{ title }}</h1>
     {# textContent falls back to a readable default if JavaScript is disabled or relative-date-formatter.js doesn't work  #}
     <h2>Last updated <span class="relative-date" data-iso-date="{{ page.date | toISOString }}">on {{ page.date | readableDate }}</span></h2>
+
+    {% if draft %}
+    <aside>
+        <p>
+            This page is a stub! That means it is incomplete and needs your help. <a href="mailto:drafter_preempt0f@icloud.com?subject=Suggestion%20for%20{{ title }}&body=Thanks%20for%20contributing%20to%20Brown%20Pages.%20Please%20replace%20this%20text%20with%20what%20you%20think%20should%20be%20on%20the%20{{ title }}%20page.%20Include%20references%20and%20images%20where%20relevant.%0D%0A%0D%0AYou%20can%20find%20more%20guidance%20on%20our%20Contribute%20to%20Brown%20Pages%20page%2C%20here%3A%0D%0Ahttps%3A%2F%2Fbrownpages.org%2Fcontribute"
+            >Suggest additions</a> so it can be added to the directory.
+        </p>
+    </aside>
+    {% else %}
     <a href="mailto:drafter_preempt0f@icloud.com?subject=Suggestion%20for%20{{ title }}&body=Thanks%20for%20contributing%20to%20Brown%20Pages.%20Please%20replace%20this%20text%20with%20what%20you%20think%20should%20be%20on%20the%20{{ title }}%20page.%20Include%20references%20and%20images%20where%20relevant.%0D%0A%0D%0AYou%20can%20find%20more%20guidance%20on%20our%20Contribute%20to%20Brown%20Pages%20page%2C%20here%3A%0D%0Ahttps%3A%2F%2Fbrownpages.org%2Fcontribute">Suggest an edit</a>
+    {% endif %}
+
+    {% if summary %}
+    <aside>
+    <h2>Summary</h2>
+    <ul>
+    {% for item in summary %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+    </aside>
+    
+    <h2 class="visibly-hidden">Details</h2>
+    {% endif %}
 
     {{ content | safe }}
 
@@ -18,5 +41,5 @@
         <h2>Not enough to go on?</h2>
         <p>Search the <a href="https://sharewaste.com/share-waste" target="_blank" rel="noopener">ShareWaste map</a> for individuals who open their backyard compost up to the public. Also check out our guide on <a href="/compost-at-home">how to compost at home</a>.</p>
     </aside>
-
+</article>
 {% endblock %}
