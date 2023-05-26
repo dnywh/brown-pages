@@ -35,7 +35,9 @@
     <h2 class="visibly-hidden">Details</h2>
     {% endif %}
 
+    {% if not draft %}
     {{ content | safe }}
+    {% endif %}
 
     <aside>
         <h2>Not enough to go on?</h2>
