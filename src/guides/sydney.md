@@ -3,7 +3,7 @@ title: Sydney
 eleventyNavigation:
   key: Sydney
   parent: New South Wales
-draft: false
+stub: true
 country: Australia
 ---
 

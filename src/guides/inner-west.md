@@ -5,7 +5,7 @@ eleventyNavigation:
   key: Inner West
   parent: Sydney
 country: Australia
-draft: false
+stub: true
 ---
 
 Some content here.

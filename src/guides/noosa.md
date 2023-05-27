@@ -4,7 +4,7 @@ eleventyNavigation:
   key: Noosa
   parent: Sunshine Coast Region
 country: Australia
-draft: false
+stub: true
 ---
 
 {% include "partials/no-residential-service.html" %}

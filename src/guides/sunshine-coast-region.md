@@ -4,7 +4,7 @@ eleventyNavigation:
   key: Sunshine Coast Region
   parent: Queensland
 country: Australia
-draft: false
+stub: true
 ---
 
 This is a city-container page. Hyperlocal information is available for specific parts of Sunshine Coast Region:

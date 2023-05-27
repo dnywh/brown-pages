@@ -44,17 +44,6 @@ module.exports = function (config) {
         ).format(dateObj);
     });
 
-    // Make a collection of guides but only those that aren't marked as 'draft'
-    config.addCollection("publicGuides", (collection) => {
-        // Get all guides
-        const allGuides = collection.getFilteredByGlob("./src/guides/*.md")
-        // Exclude drafts
-        const publicGuides = allGuides.filter(item => !Boolean(item.data.draft))
-        // Return
-        return publicGuides
-    })
-
-
     return {
         dir: {
             input: "src",

@@ -4,7 +4,7 @@ eleventyNavigation:
   key: Brisbane
   parent: Queensland
 country: Australia
-draft: false
+stub: true
 ---
 
 Brisbane City Council has no residential food scrap pick-up service as part of its regular waste collection services. That said, the council has many <a href="https://www.brisbane.qld.gov.au/clean-and-green/green-home-and-community/sustainable-gardening/compost-and-food-waste-recycling/compost/community-composting-hubs" target="_blank" rel="noopener">community composting hubs</a> throughout the city.

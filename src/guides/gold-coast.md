@@ -4,7 +4,7 @@ eleventyNavigation:
   key: Gold Coast
   parent: Queensland
 country: Australia
-draft: false
+stub: true
 ---
 
 {% include "partials/no-residential-service.html" %}

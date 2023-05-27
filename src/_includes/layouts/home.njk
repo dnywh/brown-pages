@@ -3,7 +3,7 @@
 
 <h1>{{ site.subtitle }}</h1>
 
-{% set navPages = collections.publicGuides | eleventyNavigation %}
+{% set navPages = collections.guides | eleventyNavigation %}
 {% macro renderNavListItem(entry) -%}
 <li>
     {%- if entry.url == false -%}

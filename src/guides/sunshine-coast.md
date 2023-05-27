@@ -4,7 +4,7 @@ eleventyNavigation:
   key: Sunshine Coast
   parent: Sunshine Coast Region
 country: Australia
-draft: false
+stub: true
 ---
 
 Sunshine Coast Council has no residential food scrap pick-up service as part of its regular waste collection services. That said, the council has <a href="https://www.sunshinecoast.qld.gov.au/living-and-community/waste-and-recycling/bin-collection-services/garden-waste-bin-collection/frequently-asked-questions#:~:text=We%20are%20currently%20investigating%20suitable%20processing%20facilities.%20The%20garden%20organics%20service%20can%20easily%20transition%20to%20a%20FOGO%20service%20in%20the%20future." target="_blank" rel="noopener">publicly committed</a> to implementing a Food Organics and Garden Organics (FOGO) service in the near future.

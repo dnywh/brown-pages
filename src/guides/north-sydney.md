@@ -4,7 +4,7 @@ eleventyNavigation:
   key: North Sydney
   parent: Sydney
 country: Australia
-draft: false
+stub: true
 ---
 
 Some content here, such as https://compostrevolution.com.au/northsydney/
