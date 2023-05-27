@@ -1,6 +1,6 @@
 # Brown Pages
 
-Your guide to local composting, available at [www.brownpages.org](https://www.brownpages.org).
+Your local guide to composting, available at [www.brownpages.org](https://www.brownpages.org).
 
 ## Contributing
 

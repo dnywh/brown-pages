@@ -1,8 +1,8 @@
 ---
 title: Buenos Aires
-type: city-whole
-province: Buenos Aires Province
-country: Argentina
+eleventyNavigation:
+  key: Buenos Aires
+  parent: Argentina
 summary:
   - Public organic drop-off points throughout the city, staffed during certain hours
 ---

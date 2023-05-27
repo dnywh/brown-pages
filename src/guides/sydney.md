@@ -1,9 +1,9 @@
 ---
 title: Sydney
-type: city-container
-province: New South Wales
-country: Australia
-draft: true
+eleventyNavigation:
+  key: Sydney
+  parent: New South Wales
+draft: false
 ---
 
 This is a city-container page. Hyperlocal information is available for specific parts of Sydney:

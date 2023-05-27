@@ -1,11 +1,10 @@
 ---
 title: Inner West
 prefix: the
-type: locality-council
-city: Sydney
-province: New South Wales
-country: Australia
-draft: true
+eleventyNavigation:
+  key: Inner West
+  parent: Sydney
+draft: false
 ---
 
 Some content here.

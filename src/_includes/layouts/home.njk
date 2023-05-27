@@ -1,11 +1,8 @@
 {% extends "layouts/base.njk" %}
 {% block bodyContent %}
-    <ul>
-        {% for item in collections.publicGuides %}
-        <li>
-            <a href="{{ item.url }}">{{ item.data.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
+
+<h1>{{ site.subtitle }}</h1>
+
+{{ collections.publicGuides | eleventyNavigation | eleventyNavigationToHtml | safe }}
 
 {% endblock %}

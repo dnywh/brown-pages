@@ -1,8 +1,8 @@
 ---
 title: Cusco
-type: city-whole
-province: Greater Cusco
-country: Peru
+eleventyNavigation:
+  key: Cusco
+  parent: Peru
 summary:
   - Public organic waste bins throughout town
   - Private pickup options also available

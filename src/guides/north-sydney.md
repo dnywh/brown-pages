@@ -1,10 +1,9 @@
 ---
 title: North Sydney
-type: locality-council
-city: Sydney
-province: New South Wales
-country: Australia
-draft: true
+eleventyNavigation:
+  key: North Sydney
+  parent: Sydney
+draft: false
 ---
 
 Some content here, such as https://compostrevolution.com.au/northsydney/

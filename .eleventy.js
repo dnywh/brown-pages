@@ -1,8 +1,15 @@
 // Imports
-const { DateTime } = require("luxon");
+// const { DateTime } = require("luxon");
+const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const { srcset, src } = require("./src/helpers/shortcodes");
 
 module.exports = function (config) {
+    // Quieten console output
+    config.setQuietMode(true);
+
+    // Plugins
+    config.addPlugin(eleventyNavigationPlugin);
+
     // Copy folders into output directory
     config.addPassthroughCopy("./src/style.css")
     config.addPassthroughCopy("./src/js/");
@@ -37,14 +44,21 @@ module.exports = function (config) {
         ).format(dateObj);
     });
 
-
     // Make a collection of guides but only those that aren't marked as 'draft'
-    config.addCollection("publicGuides", function (collectionApi) {
-        // get all guides
-        return collectionApi.getFilteredByGlob("./src/guides/*.md")
-            // exclude all drafts
-            .filter(item => !Boolean(item.data.draft))
-    });
+    config.addCollection("publicGuides", (collection) => {
+        // Get all guides
+        const allGuides = collection.getFilteredByGlob("./src/guides/*.md")
+        // Sort alphabetically
+        const sortedAlphabetically = allGuides.sort((a, b) => {
+            if (a.data.title > b.data.title) return -1;
+            else if (a.data.title < b.data.title) return 1;
+            else return 0;
+        }).reverse()
+        // Exclude drafts
+        const publicGuides = allGuides.filter(item => !Boolean(item.data.draft))
+        // Return
+        return publicGuides
+    })
 
 
     return {

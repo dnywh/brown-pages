@@ -35,6 +35,7 @@
     <h2 class="visibly-hidden">Details</h2>
     {% endif %}
 
+    {# Only show non-draft content #}
     {% if not draft %}
     {{ content | safe }}
     {% endif %}
