@@ -48,12 +48,6 @@ module.exports = function (config) {
     config.addCollection("publicGuides", (collection) => {
         // Get all guides
         const allGuides = collection.getFilteredByGlob("./src/guides/*.md")
-        // Sort alphabetically
-        const sortedAlphabetically = allGuides.sort((a, b) => {
-            if (a.data.title > b.data.title) return -1;
-            else if (a.data.title < b.data.title) return 1;
-            else return 0;
-        }).reverse()
         // Exclude drafts
         const publicGuides = allGuides.filter(item => !Boolean(item.data.draft))
         // Return
