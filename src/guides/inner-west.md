@@ -4,6 +4,7 @@ prefix: the
 eleventyNavigation:
   key: Inner West
   parent: Sydney
+country: Australia
 draft: false
 ---
 

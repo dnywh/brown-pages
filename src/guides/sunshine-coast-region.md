@@ -2,7 +2,8 @@
 title: Sunshine Coast Region
 eleventyNavigation:
   key: Sunshine Coast Region
-  parent: Brisbane
+  parent: Queensland
+country: Australia
 draft: false
 ---
 

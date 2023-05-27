@@ -3,6 +3,7 @@ title: Buenos Aires
 eleventyNavigation:
   key: Buenos Aires
   parent: Argentina
+country: Argentina
 summary:
   - Public organic drop-off points throughout the city, staffed during certain hours
 ---

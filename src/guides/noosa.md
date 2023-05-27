@@ -3,6 +3,7 @@ title: Noosa
 eleventyNavigation:
   key: Noosa
   parent: Sunshine Coast Region
+country: Australia
 draft: false
 ---
 

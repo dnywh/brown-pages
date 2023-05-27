@@ -4,6 +4,7 @@ eleventyNavigation:
   key: Sydney
   parent: New South Wales
 draft: false
+country: Australia
 ---
 
 This is a city-container page. Hyperlocal information is available for specific parts of Sydney:

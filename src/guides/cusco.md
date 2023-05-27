@@ -3,6 +3,7 @@ title: Cusco
 eleventyNavigation:
   key: Cusco
   parent: Peru
+country: Peru
 summary:
   - Public organic waste bins throughout town
   - Private pickup options also available

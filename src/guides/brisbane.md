@@ -3,6 +3,7 @@ title: Brisbane
 eleventyNavigation:
   key: Brisbane
   parent: Queensland
+country: Australia
 draft: false
 ---
 

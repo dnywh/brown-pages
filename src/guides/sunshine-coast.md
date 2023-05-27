@@ -3,6 +3,7 @@ title: Sunshine Coast
 eleventyNavigation:
   key: Sunshine Coast
   parent: Sunshine Coast Region
+country: Australia
 draft: false
 ---
 

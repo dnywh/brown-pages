@@ -1,6 +1,7 @@
 ---
 title: Australia
-permalink: false
 eleventyNavigation:
   key: Australia
+permalink: false
+type: country
 ---

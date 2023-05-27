@@ -3,6 +3,7 @@ title: Gold Coast
 eleventyNavigation:
   key: Gold Coast
   parent: Queensland
+country: Australia
 draft: false
 ---
 

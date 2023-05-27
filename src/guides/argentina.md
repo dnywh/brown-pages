@@ -1,6 +1,7 @@
 ---
 title: Argentina
-permalink: false
 eleventyNavigation:
   key: Argentina
+permalink: false
+type: country
 ---
