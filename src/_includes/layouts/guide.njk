@@ -1,3 +1,25 @@
+{% set crumbs = collections.publicGuides | eleventyNavigationBreadcrumb(eleventyNavigation.key) %}
+{% set childGuides = collections.publicGuides | eleventyNavigation(eleventyNavigation.key) %}
+
+{% macro renderBreadcrumbListItem(entry) -%}
+<li>
+    {%- if entry.url == false -%}
+    {{ entry.title }}
+    {%- else -%}
+    <a href="{{ entry.url }}">{{ entry.title }}</a>
+    {%- endif -%}
+</li>
+{%- endmacro %}
+
+
+{% macro renderChildGuideItem(entry) -%}
+<li>
+    <a href="{{ entry.url }}">{{ entry.title }}</a>
+</li>
+{%- endmacro %}
+
+
+
 {% extends "layouts/base.njk" %}
 
 {% block headContent %}
@@ -5,11 +27,35 @@
   <script defer src="/js/relative-date-formatter.js"></script>
 {% endblock %}
 
+
+
+
+
 {% block bodyContent %}
+<nav aria-label="Breadcrumb" class="breadcrumb">
+    <ul>
+        {%- for entry in crumbs %}{{ renderBreadcrumbListItem(entry) }}{%- endfor -%}
+    </ul>
+</nav>
+
+
+{# {{ collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, {includeSelf: true}) | eleventyNavigationToHtml({ listClass: 'fl fl-inline', activeListItemClass: 'breadcrumb-active' }) | safe }} #}
+
 <article>
     <h1><span>How to compost in {{ prefix }}</span><br>{{ title }}</h1>
+    {# Last update datestamp #}
     {# textContent falls back to a readable default if JavaScript is disabled or relative-date-formatter.js doesn't work  #}
     <h2>Last updated <span class="relative-date" data-iso-date="{{ page.date | toISOString }}">on {{ page.date | readableDate }}</span></h2>
+
+
+    {% if childGuides.length %}
+    {# Has child guides, list them #}
+    <h2>Child guides</h2>
+    <ul>
+        {%- for entry in childGuides %}{{ renderChildGuideItem(entry) }}{%- endfor -%}
+    </ul>
+    {% endif %}
+    
 
     {% if stub %}
     <aside>

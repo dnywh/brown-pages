@@ -1,5 +1,65 @@
+/* Variables */
+:root {
+  --color-text-primary: hsla(22, 100%, 14%, 1);
+  --color-background: hsla(25, 100%, 99%, 1);
+}
+
+@font-face {
+  font-family: "ITC Franklin Gothic";
+  src: url(/assets/fonts/ITC-Franklin-Gothic_Book.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  font-feature-settings: "kern" 1, "pnum" 1;
+}
+
+@font-face {
+  font-family: "ITC Franklin Gothic";
+  src: url(/assets/fonts/ITC-Franklin-Gothic_Italic.woff2) format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ITC Franklin Gothic";
+  src: url(/assets/fonts/ITC-Franklin-Gothic_Medium.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  font-feature-settings: "kern" 1;
+}
+
+@font-face {
+  font-family: "ITC Franklin Gothic";
+  src: url(/assets/fonts/ITC-Franklin-Gothic_Medium-Italic.woff2)
+    format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ITC Franklin Gothic";
+  src: url(/assets/fonts/ITC-Franklin-Gothic_Demi.woff2) format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  font-feature-settings: "kern" 1;
+}
+
+@font-face {
+  font-family: "ITC Franklin Gothic";
+  src: url(/assets/fonts/ITC-Franklin-Gothic_Demi-Italic.woff2) format("woff2");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
 body {
-  color: brown;
+  font-family: "ITC Franklin Gothic", sans-serif;
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
 }
 
 figure {
@@ -9,4 +69,31 @@ figure {
 figure img {
   max-width: 100%;
   height: auto;
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 92%;
+  /* or 44px */
+
+  text-align: center;
+  letter-spacing: -0.045em;
+}
+
+/* 
+  Breadcrumbs
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navigation
+*/
+.breadcrumb ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  display: inline-block;
+  margin: 0 0.25rem;
+  content: "/";
 }

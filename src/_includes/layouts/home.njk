@@ -1,9 +1,9 @@
 {% extends "layouts/base.njk" %}
 {% block bodyContent %}
 
-<h1>{{ site.subtitle }}</h1>
+<h1>Your local guide<br> to composting</h1>
 
-{% set navPages = collections.guides | eleventyNavigation %}
+{% set navPages = collections.publicGuides | eleventyNavigation %}
 {% macro renderNavListItem(entry) -%}
 <li>
     {%- if entry.url == false -%}
@@ -20,10 +20,8 @@
 {%- endmacro %}
 
 <ul>
-{%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
+  {%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
 </ul>
 
-
-{# {{ collections.publicGuides | eleventyNavigation | eleventyNavigationToHtml | safe }} #}
 
 {% endblock %}

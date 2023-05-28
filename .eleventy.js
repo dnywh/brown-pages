@@ -13,6 +13,7 @@ module.exports = function (config) {
     // Copy folders into output directory
     config.addPassthroughCopy("./src/style.css")
     config.addPassthroughCopy("./src/js/");
+    config.addPassthroughCopy("./src/assets/");
 
     // Shortcodes
     // Image shortcodes from helpers/shortcodes.js
@@ -43,6 +44,22 @@ module.exports = function (config) {
             'en-GB', { dateStyle: 'full' }
         ).format(dateObj);
     });
+
+    // Make a collection of guides sorted alphabetically
+    config.addCollection("publicGuides", (collection) => {
+        // Get all guides
+        const allGuides = collection.getFilteredByGlob("./src/guides/*.md")
+        // Sort alphabetically
+        const sortedAlphabetically = allGuides.sort((a, b) => {
+            if (a.data.title > b.data.title) return -1;
+            else if (a.data.title < b.data.title) return 1;
+            else return 0;
+        }).reverse()
+        // TODO
+        const publicGuides = sortedAlphabetically
+        // Return
+        return publicGuides
+    })
 
     return {
         dir: {
