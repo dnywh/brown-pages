@@ -1,5 +1,5 @@
-{% set crumbs = collections.publicGuides | eleventyNavigationBreadcrumb(eleventyNavigation.key) %}
-{% set childGuides = collections.publicGuides | eleventyNavigation(eleventyNavigation.key) %}
+{% set crumbs = collections.guides | eleventyNavigationBreadcrumb(eleventyNavigation.key) %}
+{% set childGuides = collections.guides | eleventyNavigation(eleventyNavigation.key) %}
 
 {% macro renderBreadcrumbListItem(entry) -%}
 <li>
@@ -17,7 +17,6 @@
     <a href="{{ entry.url }}">{{ entry.title }}</a>
 </li>
 {%- endmacro %}
-
 
 
 {% extends "layouts/base.njk" %}

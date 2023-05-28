@@ -3,7 +3,7 @@
 
 <h1>Your local guide<br> to composting</h1>
 
-{% set navPages = collections.publicGuides | eleventyNavigation %}
+{% set navPages = collections.guides | eleventyNavigation %}
 {% macro renderNavListItem(entry) -%}
 <li>
     {%- if entry.url == false -%}

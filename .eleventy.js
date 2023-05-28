@@ -46,7 +46,7 @@ module.exports = function (config) {
     });
 
     // Make a collection of guides sorted alphabetically
-    config.addCollection("publicGuides", (collection) => {
+    config.addCollection("guides", (collection) => {
         // Get all guides
         const allGuides = collection.getFilteredByGlob("./src/guides/*.md")
         // Sort alphabetically
@@ -55,10 +55,9 @@ module.exports = function (config) {
             else if (a.data.title < b.data.title) return 1;
             else return 0;
         }).reverse()
-        // TODO
-        const publicGuides = sortedAlphabetically
-        // Return
-        return publicGuides
+        // Return the end result
+        const guides = sortedAlphabetically
+        return guides
     })
 
     return {
