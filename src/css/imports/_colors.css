@@ -1,0 +1,10 @@
+:root {
+  --color-text-primary: hsla(22, 100%, 14%, 1);
+  --color-text-primary-2: hsla(22, 100%, 14%, 0.85);
+  --color-text-2: hsla(22, 100%, 14%, 0.6);
+  --color-background: hsla(25, 100%, 99%, 1);
+  --color-level-0: hsla(25, 100%, 99%, 1);
+  --color-level-1: hsla(25, 49%, 92%, 1);
+  --color-level-2: hsla(22, 37%, 90%, 1);
+  --color-divider: hsla(22, 19%, 43%, 0.12);
+}

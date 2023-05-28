@@ -1,0 +1,42 @@
+body,
+a {
+  font-family: "ITC Franklin Gothic", system-ui, sans-serif;
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 92%;
+  letter-spacing: -0.045em;
+
+  & span {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 92%;
+    /* identical to box height, or 15px */
+
+    letter-spacing: -0.035em;
+  }
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 92%;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.75rem;
+}
+
+article > h2 {
+  margin-top: 2.5rem;
+}
+
+p {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 140%;
+  letter-spacing: -0.0175em;
+  color: var(--color-text-primary-2);
+  margin-bottom: 14px;
+}

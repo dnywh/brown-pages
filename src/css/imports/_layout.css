@@ -1,0 +1,150 @@
+body {
+  background-color: var(--color-background);
+  max-width: 640px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+/* Site header */
+body > header {
+  margin: 0 1.5rem 1.5rem;
+}
+
+/* Site footer */
+body > footer {
+  margin: 4rem 1.5rem 0;
+}
+
+.breadcrumb,
+.alternatives {
+  background-color: var(--color-level-2);
+
+  margin: 0 0.75rem;
+
+  & ul,
+  & p {
+    font-size: 14px;
+    letter-spacing: -0.03em;
+  }
+}
+/* 
+  Breadcrumbs
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Layout_cookbook/Breadcrumb_Navigation
+*/
+.breadcrumb {
+  padding: 1.25rem 1rem 2rem;
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    line-height: 120%;
+    color: var(--color-text-2);
+
+    & li:not(:last-child)::after {
+      display: inline-block;
+      margin: 0 0.25rem;
+      content: "/";
+    }
+  }
+}
+
+/* The main guide article */
+main > article {
+  background-color: var(--color-level-1);
+  /* Overlap with .breadcrumb margin-bottom */
+  margin-top: -1rem;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05), 0px -1px 1px rgba(0, 0, 0, 0.05);
+  padding: 1rem 1.5rem 3rem;
+
+  & h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  & header {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.date,
+.button-action {
+  display: block;
+  font-size: 14px;
+  line-height: 92%;
+  letter-spacing: -0.03em;
+}
+
+.date {
+  margin-bottom: 0.75rem;
+  color: var(--color-text-2);
+}
+
+.button-action {
+  font-weight: 500;
+}
+
+.summary {
+  background-color: var(--color-level-0);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.03);
+  margin-bottom: 2.5rem;
+  padding: 1.25rem 1rem 1.5rem;
+
+  & h2 {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 92%;
+    letter-spacing: 0.075em;
+    text-transform: uppercase;
+    color: var(--color-text-2);
+    margin-bottom: 1rem;
+  }
+
+  & ul {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 120%;
+    /* or 20px */
+    color: var(--color-text-primary-2);
+    letter-spacing: -0.02em;
+
+    & li:not(:last-of-type) {
+      padding-bottom: 0.75rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--color-divider);
+    }
+  }
+}
+
+figure {
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 0.75rem;
+  /* Match the width of the border */
+  margin-left: -3px;
+
+  & img {
+    max-width: 62%;
+    height: auto;
+    border: 3px solid #fcfaf7;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.03);
+  }
+
+  & figcaption {
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: -0.02em;
+    color: var(--color-text-2);
+  }
+}
+
+.alternatives {
+  padding: 2rem 2.5rem 1.25rem;
+
+  & h2 {
+    font-size: 18px;
+    margin-bottom: 0.25rem;
+  }
+}

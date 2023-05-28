@@ -1,6 +1,7 @@
 // Imports
 // const { DateTime } = require("luxon");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const lightningCSS = require("@11tyrocks/eleventy-plugin-lightningcss");
 const { srcset, src } = require("./src/helpers/shortcodes");
 
 module.exports = function (config) {
@@ -9,9 +10,11 @@ module.exports = function (config) {
 
     // Plugins
     config.addPlugin(eleventyNavigationPlugin);
+    // https://11ty.rocks/posts/process-css-with-lightningcss/#autoprefixing-and-minification-with-lightningcss
+    config.addPlugin(lightningCSS);
 
     // Copy folders into output directory
-    config.addPassthroughCopy("./src/style.css")
+    config.addPassthroughCopy("./src/css/");
     config.addPassthroughCopy("./src/js/");
     config.addPassthroughCopy("./src/assets/");
 

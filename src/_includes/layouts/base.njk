@@ -36,10 +36,12 @@
   <meta name="generator" content="{{ eleventy.generator }}">
 
   {# Stylesheets #}
-  <link rel="stylesheet" href="{{ '/style.css' | url }}">
+  <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
 
   {# Splitbee #}
+  {% if (process.env.NODE_ENV === "production") %}
   <script async src="https://cdn.splitbee.io/sb.js"></script>
+  {% endif %}
 
   {# Anything bespoke to a page can go in these blocks #}
   {% block headContent %}{% endblock %}

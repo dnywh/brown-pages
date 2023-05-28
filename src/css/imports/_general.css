@@ -1,0 +1,9 @@
+/* Home */
+
+.directory {
+  background: var(--color-level-1);
+
+  /* & li {
+    color: green;
+  } */
+}
