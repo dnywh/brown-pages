@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "eleventy --serve",
-    "build": "ENVIRONMENT=production eleventy"
+    "build": "eleventy"
   },
   "author": "Danny White",
   "license": "ISC",

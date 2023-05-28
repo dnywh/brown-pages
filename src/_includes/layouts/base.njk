@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
 
   {# Splitbee #}
-  {% if (process.env.ENVIRONMENT === "production") %}
+  {% if (process.env.ELEVENTY_RUN_MODE == "build") %}
   <script async src="https://cdn.splitbee.io/sb.js"></script>
   {% endif %}
 
