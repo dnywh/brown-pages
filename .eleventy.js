@@ -1,12 +1,23 @@
 // Imports
 // const { DateTime } = require("luxon");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
+const htmlMinTransform = require('./src/transforms/html-min-transform.js');
 const lightningCSS = require("@11tyrocks/eleventy-plugin-lightningcss");
 const { srcset, src } = require("./src/helpers/shortcodes");
 
 module.exports = function (config) {
     // Quieten console output
     config.setQuietMode(true);
+
+    // Create a helpful production flag
+    // TODO: Unify with that in /data/env.js?
+    const isBuild = process.env.ELEVENTY_RUN_MODE === 'build';
+
+    // Transforms
+    // Only minify HTML if we are in production because it slows builds _right_ down
+    if (isBuild) {
+        config.addTransform('htmlmin', htmlMinTransform);
+    }
 
     // Plugins
     config.addPlugin(eleventyNavigationPlugin);

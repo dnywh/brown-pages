@@ -119,6 +119,7 @@ main > article {
 }
 
 figure {
+  margin-top: 2rem;
   margin-bottom: 2rem;
   display: flex;
   gap: 0.75rem;

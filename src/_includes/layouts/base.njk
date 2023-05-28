@@ -38,9 +38,9 @@
   {# Stylesheets #}
   <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
 
-  {# Splitbee #}
-  {% if (process.env.ELEVENTY_RUN_MODE == "build") %}
-  <script async src="https://cdn.splitbee.io/sb.js"></script>
+  {% if (env.eleventyRunMode === "build") %}
+    {# Splitbee #}
+    <script async src="https://cdn.splitbee.io/sb.js"></script>
   {% endif %}
 
   {# Anything bespoke to a page can go in these blocks #}
