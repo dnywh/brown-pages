@@ -4,23 +4,23 @@
 <h1>Your local guide<br> to composting</h1>
 
 {% set navPages = collections.guides | eleventyNavigation %}
-{% macro renderNavListItem(entry) -%}
+{% macro renderNavListItem(entry) %}
 <li>
-    {%- if entry.url == false -%}
+    {% if entry.url == false %}
     {{ entry.title }}
-    {%- else -%}
+    {% else %}
     <a href="{{ entry.url }}">{{ entry.title }}</a>
-    {%- endif -%}
-{%- if entry.children.length -%}
+    {% endif %}
+{% if entry.children.length %}
   <ul class="plain">
-    {%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
+    {% for child in entry.children %}{{ renderNavListItem(child) }}{% endfor %}
   </ul>
-{%- endif -%}
+{% endif %}
 </li>
-{%- endmacro %}
+{% endmacro %}
 
 <ul class="directory plain">
-  {%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
+  {% for entry in navPages %}{{ renderNavListItem(entry) }}{% endfor %}
 </ul>
 
 

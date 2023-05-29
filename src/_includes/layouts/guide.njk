@@ -1,22 +1,22 @@
 {% set crumbs = collections.guides | eleventyNavigationBreadcrumb(eleventyNavigation.key) %}
 {% set childGuides = collections.guides | eleventyNavigation(eleventyNavigation.key) %}
 
-{% macro renderBreadcrumbListItem(entry) -%}
+{% macro renderBreadcrumbListItem(entry) %}
 <li>
-    {%- if entry.url == false -%}
+    {% if entry.url == false %}
     {{ entry.title }}
-    {%- else -%}
+    {% else %}
     <a href="{{ entry.url }}">{{ entry.title }}</a>
-    {%- endif -%}
+    {% endif %}
 </li>
-{%- endmacro %}
+{% endmacro %}
 
 
-{% macro renderChildGuideItem(entry) -%}
+{% macro renderChildGuideItem(entry) %}
 <li>
     <a href="{{ entry.url }}">{{ entry.title }}</a>
 </li>
-{%- endmacro %}
+{% endmacro %}
 
 
 {% extends "layouts/base.njk" %}
@@ -33,7 +33,7 @@
 {% block bodyContent %}
 <nav aria-label="Breadcrumb" class="breadcrumb">
     <ul>
-        {%- for entry in crumbs %}{{ renderBreadcrumbListItem(entry) }}{%- endfor -%}
+        {% for entry in crumbs %}{{ renderBreadcrumbListItem(entry) }}{% endfor %}
     </ul>
 </nav>
 
@@ -75,7 +75,7 @@
     {# Has child guides, list them #}
     <p>Hyperlocal information is available for specific parts of {% if prefix %}{{ prefix }} {% endif %}{{ title }}:</p>
     <ul>
-        {%- for entry in childGuides %}{{ renderChildGuideItem(entry) }}{%- endfor -%}
+        {% for entry in childGuides %}{{ renderChildGuideItem(entry) }}{% endfor %}
     </ul>
     {% endif %}
 
