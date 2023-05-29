@@ -1,5 +1,6 @@
 ---
 title: Gold Coast
+council: Gold Coast Council
 eleventyNavigation:
   key: Gold Coast
   parent: Queensland

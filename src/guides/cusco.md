@@ -1,9 +1,11 @@
 ---
 title: Cusco
+council: Municipalidad del Cusco
 eleventyNavigation:
   key: Cusco
   parent: Peru
 country: Peru
+score: 4
 summary:
   - Public organic waste bins throughout town
   - Private pickup options also available
@@ -23,7 +25,7 @@ Some public areas of Cusco have a dedicated organics waste bin. See Mercado San 
   <figcaption>The Punto Ecológico at Mercado San Blas with the organics bin on the right-hand side.</figcaption>
 </figure>
 
-That said, Municipalidad del Cusco is making strides with its <a href="https://cusco.gob.pe/noticias/con-el-programa-qosqo-recicla-promotores-ambientales-de-la-mpc-orientan-de-casa-en-casa-para-promover-segregacion/" target="_blank" rel="noopener">Qosqo Recicla</a> programme. Pop-up information sessions are often provided in local plazas, such as Plaza San Francisco.
+That said, {{ council }} is making strides with its <a href="https://cusco.gob.pe/noticias/con-el-programa-qosqo-recicla-promotores-ambientales-de-la-mpc-orientan-de-casa-en-casa-para-promover-segregacion/" target="_blank" rel="noopener">Qosqo Recicla</a> programme. Pop-up information sessions are often provided in local plazas, such as Plaza San Francisco.
 
 ## Private options
 
