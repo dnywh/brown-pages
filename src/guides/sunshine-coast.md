@@ -1,6 +1,7 @@
 ---
 title: Sunshine Coast
 prefix: the
+preposition: on
 council: Sunshine Coast Council
 eleventyNavigation:
   key: Sunshine Coast

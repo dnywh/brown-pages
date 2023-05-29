@@ -2,5 +2,6 @@
   "layout": "layouts/guide.njk",
   "date": "Last Modified",
   "permalink": "/{{ country | slugify }}/{{ title | slugify }}/",
+  "preposition": "in",
   "tags": "guide"
 }

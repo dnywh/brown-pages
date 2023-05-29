@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   {# Title #}
+  {% set guideTitleStart = "How to compost " + preposition + " " %}
   {# Set a specific title for the homepage #}
   {% if title === "Home" %}
       {% set pageTitle = site.title + " — " + site.subtitle %}
     {# Set a fancy title for the guides #}
     {% elif tags[0] === "guide" %}
       {% if prefix %}
-        {% set pageTitle = "How to compost in " + prefix + " " + title + " — " + site.title %}
+        {% set pageTitle = guideTitleStart + prefix + " " + title + " — " + site.title %}
       {% else %}
-        {% set pageTitle = "How to compost in " + title + " — " + site.title %}
+        {% set pageTitle = guideTitleStart + title + " — " + site.title %}
       {% endif %}
     {# ...and a generic one for everything else #}
     {% else %}
