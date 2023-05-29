@@ -4,10 +4,24 @@ const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const htmlMinTransform = require('./src/transforms/html-min-transform.js');
 const lightningCSS = require("@11tyrocks/eleventy-plugin-lightningcss");
 const { srcset, src } = require("./src/helpers/shortcodes");
+const mila = require("markdown-it-link-attributes");
 
 module.exports = function (config) {
     // Quieten console output
     config.setQuietMode(true);
+
+    // Turn all external Markdown links to new-tab links
+    const milaOptions = {
+        html: true,
+        matcher(href) {
+            return href.match(/^https?:\/\//);
+        },
+        attrs: {
+            target: "_blank",
+            rel: "noopener"
+        }
+    };
+    config.amendLibrary("md", mdLib => mdLib.use(mila, milaOptions));
 
     // Create a helpful production flag
     // TODO: Unify with that in /data/env.js?
