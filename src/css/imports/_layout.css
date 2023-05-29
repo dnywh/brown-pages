@@ -41,7 +41,10 @@ body > header {
 
 /* Site footer */
 body > footer {
-  margin: 4rem 1.5rem 0;
+  margin: 3rem auto 4rem;
+  max-width: 512px;
+
+  padding: 0 0.75rem;
 
   > div {
     height: 1.375rem;
@@ -59,7 +62,7 @@ body > footer {
   & section {
     margin-top: 0.5rem;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: space-between;
 
     & p,
@@ -203,10 +206,12 @@ main > article.guide {
 
 .date,
 .button-action {
-  display: block;
   font-size: 14px;
   line-height: 92%;
   letter-spacing: -0.03em;
+  display: block;
+  /* Stop link tap target(s) from taking full width */
+  width: max-content;
 }
 
 .date {
