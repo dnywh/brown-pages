@@ -118,23 +118,28 @@ main > article,
         /* color: orange; */
 
         & ul > li {
-          font-weight: 600;
-          font-size: 24px;
-          line-height: 92%;
-          /* identical to box height, or 22px */
-
-          letter-spacing: -0.045em;
+          /* Covered in .guide-full */
         }
       }
     }
   }
 
-  /* font-weight: 500;
-font-size: 14px;
-line-height: 92%;
+  /* Hide redundant labels created by logic in home.njk. */
+  /* E.g. the duplicate Sydney when it is the only child of NSW (where it wraps to be with its parent) */
+  /* TODO: Improve logic in home.njk so this style doesn't need to be applied */
+  .single-child > ul > li:first-of-type:not(.guide-full) > a {
+    display: none;
+  }
 
+  .guide-full {
+    /* color: red !important; */
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 92%;
+    /* identical to box height, or 22px */
 
-letter-spacing: -0.045em; */
+    letter-spacing: -0.045em;
+  }
 }
 
 /* Guides page */

@@ -1,15 +1,35 @@
-{% extends "layouts/base.njk" %}
+{% set childGuides = collections.guides | eleventyNavigation(eleventyNavigation.key) %}
+
 {% block bodyContent %}
 
 <h1>Your local guide<br> to composting</h1>
 
 {% set navPages = collections.guides | eleventyNavigation %}
-{% macro renderNavListItem(entry) %}
-<li>
-    {% if entry.url == false %}
+
+{# Create a macro that checks if the item needs to be linked or can be plain text for repeated use within renderNavListItem #}
+{% macro renderTitle(entry) %}
+{% if entry.url == false %}
     {{ entry.title }}
     {% else %}
     <a href="{{ entry.url }}">{{ entry.title }}</a>
+    {% endif %}
+{% endmacro %}
+
+{# Create a macro that loops through items to build a custom menu #}
+{# Adapted from https://www.11ty.dev/docs/plugins/navigation/#bring-your-own-html-render-the-menu-items-manually #}
+{% macro renderNavListItem(entry) %}
+{# Create a list item. Class it differently depending on how many children it has #}
+<li {% if entry.children.length == 0 %}class="guide-full"{% elseif entry.children.length == 1 %}class="single-child"{% endif %}>
+  {# Render a title irrespective of what type of list item and where #}
+  {# TODO: Except if this has no other siblings because of the below only-child logic #}
+   {{ renderTitle(entry) }}
+   {# If this item has only one child (with children of its own), 'minimise' that child's title on the same row as this item. E.g. if NSW had Sydney as its sole child #}
+    {% if entry.children.length == 1 %}
+    {% for child in entry.children %}
+    {% if child.children.length %}
+    / {{ renderTitle(child) }}
+    {% endif %}
+    {% endfor %}
     {% endif %}
 {% if entry.children.length %}
   <ul class="plain">
