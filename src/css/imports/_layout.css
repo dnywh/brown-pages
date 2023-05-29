@@ -15,34 +15,72 @@ body {
 
 /* Site header */
 body > header {
-  margin: 0 1.5rem 1.5rem;
+  /* Overdeclared for below TODO about justify-content */
+  margin: 1.5rem 1.5rem 1.5rem;
+
+  & a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    /* Align horizontally center */
+    /* TODO: Set this conditionally so it doesn't apply on guide pages? I.e. left-aligned on guide pages */
+    justify-content: center;
+  }
+
+  & span {
+    /* Must be block to enable line-height changes */
+    display: block;
+    /* height: 200px; */
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 92%;
+    letter-spacing: -0.045em;
+  }
 }
 
 /* Site footer */
 body > footer {
   margin: 4rem 1.5rem 0;
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
 
-  & p,
-  & ul {
-    font-size: 12px;
-    letter-spacing: -0.03em;
-    color: var(--color-text-2);
-    /* flex-basis: 0; */
-    > a,
-    > li a {
-      color: var(--color-text-2);
+  > div {
+    height: 1.375rem;
+  }
+
+  & svg {
+    width: auto;
+    height: 1.375rem;
+
+    > rect {
+      stroke: var(--color-text-primary-2);
     }
   }
 
-  & p {
-    flex: 2;
-  }
+  & section {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
 
-  & ul {
-    flex: 1;
+    & p,
+    & ul {
+      font-size: 12px;
+      letter-spacing: -0.03em;
+      color: var(--color-text-2);
+      /* flex-basis: 0; */
+      > a,
+      > li a {
+        color: var(--color-text-2);
+      }
+    }
+
+    & p {
+      flex: 2;
+    }
+
+    & ul {
+      flex: 1;
+    }
   }
 }
 
@@ -83,15 +121,25 @@ body > footer {
   }
 }
 
+/* Visual containers */
 main > article,
 .directory {
   background-color: var(--color-level-1);
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05), 0px -1px 1px rgba(0, 0, 0, 0.05);
-  padding: 1rem 1.5rem 3rem;
+  padding: 2.5rem 1.5rem 2rem;
+}
+
+/* These two specific types of visual container have elements that create other visual padding up top */
+/* Override above with less padding */
+main > article.guide,
+.directory {
+  padding-top: 1rem;
 }
 
 /* Home page */
 .directory {
+  padding-bottom: 2.5rem;
+
   /* General list item styles */
   & li {
     font-weight: 500;
@@ -144,13 +192,9 @@ main > article,
 
 /* Guides page */
 /* The main guide article */
-main > article {
+main > article.guide {
   /* Overlap with .breadcrumb margin-bottom */
   margin-top: -1rem;
-
-  & h1 {
-    margin-bottom: 1.5rem;
-  }
 
   & header {
     margin-bottom: 2.5rem;

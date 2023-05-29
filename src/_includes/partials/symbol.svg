@@ -1,0 +1,6 @@
+<!-- aria-hidden="true" so screen readers don't dwell on it -->
+<!-- focusable="false" so old screen readers don't focus on it -->
+<!-- Added viewBox and preserveAspectRatio for easy scaling -->
+<!-- See: https://css-tricks.com/scale-svg/ -->
+<!-- Added overflow="visible" to avoid clipping -->
+<svg class="logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="56" height="64" viewBox="0 0 56 64" preserveAspectRatio="xMidYMid meet" overflow="visible" fill="none"><rect width="51" height="59" x="2.5" y="2.5" stroke="#451900" stroke-linejoin="round" stroke-width="5" rx="8.167"/></svg>

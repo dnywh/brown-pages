@@ -29,7 +29,10 @@ module.exports = function (config) {
 
     // Transforms
     // Only minify HTML if we are in production because it slows builds _right_ down
-    if (isBuild) {
+    // if (isBuild) {
+    // Turned off temporarily because it doesn't make much of a difference at this stage
+    // TODO: Uncomment above isBuild check
+    if (true) {
         config.addTransform('htmlmin', htmlMinTransform);
     }
 

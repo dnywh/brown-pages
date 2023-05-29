@@ -1,6 +1,6 @@
 ---
 title: How to compost anywhere
-layout: "layouts/generic.njk"
+layout: "layouts/article.njk"
 ---
 
 This page is a toolkit for investigating a local area’s composting facilities, resources, and programmes. In other words: it’s a guide to how we build out the guides on this very website.

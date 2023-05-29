@@ -40,7 +40,7 @@
 
 {# {{ collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, {includeSelf: true}) | eleventyNavigationToHtml({ listClass: 'fl fl-inline', activeListItemClass: 'breadcrumb-active' }) | safe }} #}
 
-<article>
+<article class="guide">
     <header>
     <h1><span>How to compost {% if preposition %}{{ preposition }} {% else %}in {% endif %}{% if prefix %}{{ prefix }}{% endif %}</span><br>{{ title }}</h1>
     {# Last update datestamp #}

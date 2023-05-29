@@ -1,6 +1,6 @@
 ---
 title: How to compost at home
-layout: "layouts/generic.njk"
+layout: "layouts/article.njk"
 ---
 
 A full guide is coming soon. Check out these excellent resources in the meantime:

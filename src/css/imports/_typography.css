@@ -8,14 +8,21 @@ h1 {
   font-size: 48px;
   line-height: 92%;
   letter-spacing: -0.045em;
+}
 
+/* Homepage, bespoke pages */
+main > h1 {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+/* Guides only */
+article > header > h1 {
+  margin-bottom: 1.5rem;
   & span {
-    font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 92%;
-    /* identical to box height, or 15px */
-
     letter-spacing: -0.035em;
   }
 }
@@ -28,6 +35,7 @@ h2 {
   margin-bottom: 0.75rem;
 }
 
+/* Guides only */
 article > h2 {
   margin-top: 2.5rem;
 }

@@ -2,8 +2,9 @@
 
 {% block bodyContent %}
 <h1>{{ title }}</h1>
-{{ content | safe }}
 
+<article>
+{{ content | safe }}
 <h2 id="contributors">Master composters</h2>
 <ul>
 {% for i in contributors %}
@@ -11,3 +12,4 @@
 {% endfor %}
 </ul>
 {% endblock %}
+</article>
