@@ -1,3 +1,11 @@
+/* Shared classes */
+/* TODO: turn into mixin */
+.plain {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Specific elements */
 body {
   background-color: var(--color-background);
   max-width: 640px;
@@ -13,6 +21,29 @@ body > header {
 /* Site footer */
 body > footer {
   margin: 4rem 1.5rem 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+
+  & p,
+  & ul {
+    font-size: 12px;
+    letter-spacing: -0.03em;
+    color: var(--color-text-2);
+    /* flex-basis: 0; */
+    > a,
+    > li a {
+      color: var(--color-text-2);
+    }
+  }
+
+  & p {
+    flex: 2;
+  }
+
+  & ul {
+    flex: 1;
+  }
 }
 
 .breadcrumb,
@@ -52,13 +83,65 @@ body > footer {
   }
 }
 
-/* The main guide article */
-main > article {
+main > article,
+.directory {
   background-color: var(--color-level-1);
-  /* Overlap with .breadcrumb margin-bottom */
-  margin-top: -1rem;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05), 0px -1px 1px rgba(0, 0, 0, 0.05);
   padding: 1rem 1.5rem 3rem;
+}
+
+/* Home page */
+.directory {
+  /* General list item styles */
+  & li {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 92%;
+    letter-spacing: -0.045em;
+    margin-top: 1.5rem;
+    color: var(--color-text-2);
+  }
+
+  /* Specific nested styles */
+  > li {
+    /* color: red; */
+
+    &:not(:first-of-type) {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--color-divider);
+    }
+
+    & ul > li {
+      /* color: green; */
+
+      & ul > li {
+        /* color: orange; */
+
+        & ul > li {
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 92%;
+          /* identical to box height, or 22px */
+
+          letter-spacing: -0.045em;
+        }
+      }
+    }
+  }
+
+  /* font-weight: 500;
+font-size: 14px;
+line-height: 92%;
+
+
+letter-spacing: -0.045em; */
+}
+
+/* Guides page */
+/* The main guide article */
+main > article {
+  /* Overlap with .breadcrumb margin-bottom */
+  margin-top: -1rem;
 
   & h1 {
     margin-bottom: 1.5rem;

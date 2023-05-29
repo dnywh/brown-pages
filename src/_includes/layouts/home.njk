@@ -12,14 +12,14 @@
     <a href="{{ entry.url }}">{{ entry.title }}</a>
     {%- endif -%}
 {%- if entry.children.length -%}
-  <ul>
+  <ul class="plain">
     {%- for child in entry.children %}{{ renderNavListItem(child) }}{% endfor -%}
   </ul>
 {%- endif -%}
 </li>
 {%- endmacro %}
 
-<ul class="directory">
+<ul class="directory plain">
   {%- for entry in navPages %}{{ renderNavListItem(entry) }}{%- endfor -%}
 </ul>
 
