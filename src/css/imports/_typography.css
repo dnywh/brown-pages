@@ -32,11 +32,19 @@ article > h2 {
   margin-top: 2.5rem;
 }
 
-p {
+p,
+article > ul {
   font-weight: 400;
   font-size: 17px;
-  line-height: 140%;
   letter-spacing: -0.0175em;
   color: var(--color-text-primary-2);
   margin-bottom: 14px;
+}
+
+p {
+  line-height: 145%;
+}
+
+article > ul {
+  line-height: 160%;
 }
