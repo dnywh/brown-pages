@@ -1,22 +1,24 @@
 ---
 title: Gold Coast
+prefix: the
 council: Gold Coast Council
 eleventyNavigation:
   key: Gold Coast
   parent: Queensland
 country: Australia
-stub: true
+score: 1
+summary:
+  - Paid ‘Swap and Go’ compost service available for residents of Miami and Burleigh
 ---
 
 {% include "partials/no-residential-service.html" %}
 
-## Private options
+## Paid options
 
-Local business Seed the Ground runs a subscription service called <a href="https://www.seedtheground.com.au/swap-and-go" target="_blank" rel="noopener">Swap and Go</a> for $4.50 a week.
+Local business _Seed the Ground_ runs a food waste subscription service for residents in Miami and Burleigh called [Swap and Go](https://www.seedtheground.com.au/swap-and-go). For $4.50 a week, subscribers receive a compost caddy which can be swapped out at a local Swap Station.
 
-## Drop off
+Subscribers can also pick up bags of compost from their Swap Station once a month.
 
-- Seed the Ground also operate three physical properties in Miami, Burleigh Heads, and (coming soon) Northern Gold Coast
-- Labrador Community Garden (emailed)
-  - https://www.goldcoast.qld.gov.au/Things-to-do/Parks-gardens-reserves/Community-gardens
-  - https://labradorcomgarden.wixsite.com/garden
+## Resources
+
+{{ council }} maintains a list of [local community gardens](https://www.goldcoast.qld.gov.au/Things-to-do/Parks-gardens-reserves/Community-gardens). Try contacting your local garden about the possibility of food scrap drop-off.
