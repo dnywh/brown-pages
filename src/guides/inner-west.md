@@ -8,4 +8,6 @@ country: Australia
 stub: true
 ---
 
-Some content here.
+## Drop-off points
+
+{% include "partials/high-concentration-of-sharewaste.html" %}

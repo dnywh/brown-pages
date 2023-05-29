@@ -1,5 +1,6 @@
 ---
 title: Sunshine Coast
+prefix: the
 council: Sunshine Coast Council
 eleventyNavigation:
   key: Sunshine Coast
