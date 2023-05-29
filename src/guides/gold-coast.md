@@ -1,6 +1,7 @@
 ---
 title: Gold Coast
 prefix: the
+preposition: on
 council: Gold Coast Council
 eleventyNavigation:
   key: Gold Coast

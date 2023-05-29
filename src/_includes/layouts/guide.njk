@@ -42,7 +42,7 @@
 
 <article>
     <header>
-    <h1><span>How to compost in {{ prefix }}</span><br>{{ title }}</h1>
+    <h1><span>How to compost {% if preposition %}{{ preposition }} {% else %}in {% endif %}{% if prefix %}{{ prefix }}{% endif %}</span><br>{{ title }}</h1>
     {# Last update datestamp #}
     {# textContent falls back to a readable, semantic, default if JavaScript is disabled or relative-date-formatter.js doesn't work  #}
     <small class="date">Last updated <span class="relative-date" data-iso-date="{{ page.date | toISOString }}">on <time datetime="{{ page.date }}">{{ page.date | readableDate }}</time></span></small>
