@@ -4,7 +4,10 @@
 
 {% block bodyContent %}
 
-<h1>Your local guide<br> to composting</h1>
+<section class="intro">
+  <h1>Your local guide<br> to composting</h1>
+  <p>{{ site.description }}</p>
+</section>
 
 {% set navPages = collections.guides | eleventyNavigation %}
 

@@ -16,7 +16,7 @@ body {
 /* Site header */
 body > header {
   /* Overdeclared for below TODO about justify-content */
-  margin: 1.5rem 1.5rem 1.5rem;
+  margin: 1.5rem 1.5rem 3rem;
 
   & a {
     text-decoration: none;
@@ -129,13 +129,14 @@ main > article,
 .directory {
   background-color: var(--color-level-1);
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05), 0px -1px 1px rgba(0, 0, 0, 0.05);
-  padding: 2.5rem 1.5rem 2rem;
+  padding: 2.5rem 1.5rem;
+  /* padding: 2.5rem 1.5rem 2rem; */
 }
 
-/* These two specific types of visual container have elements that create other visual padding up top */
-/* Override above with less padding */
 main > article.guide,
 .directory {
+  /* These two specific types of visual container have elements that create other visual padding up top */
+  /* So override more generic rules with less padding */
   padding-top: 1rem;
 }
 
@@ -257,7 +258,10 @@ main > article.guide {
 
 figure {
   margin-top: 2rem;
-  margin-bottom: 2rem;
+  &:not(:last-child) {
+    /* Only add margin-bottom if there is content after it */
+    margin-bottom: 2rem;
+  }
   display: flex;
   gap: 0.75rem;
   /* Match the width of the border */

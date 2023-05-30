@@ -10,6 +10,7 @@ country: Australia
 score: 1
 summary:
   - Paid ‘Swap and Go’ compost service available for residents of Miami and Burleigh
+  - Some community gardens accept food scrap drop-off
 ---
 
 {% include "partials/no-residential-service.html" %}
