@@ -34,7 +34,7 @@ The council has [publicly committed](https://www.sunshinecoast.qld.gov.au/living
 The following community gardens also accept food waste drop-off:
 
 - [The Urban Farm](https://theurbanfarmmnc.com/page1.html) in Maroochydore
-- [Coolum Common](https://www.facebook.com/coolumcommon) in Coolum Beach
+- [Yandina Community Gardens](https://yandinacommunitygardens.com.au/) in Yandina
 
 ## Workshops and resources
 
