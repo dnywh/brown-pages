@@ -178,7 +178,7 @@ main > article.guide,
   /* Hide redundant labels created by logic in home.njk. */
   /* E.g. the duplicate Sydney when it is the only child of NSW (where it wraps to be with its parent) */
   /* TODO: Improve logic in home.njk so this style doesn't need to be applied */
-  .single-child > ul > li:first-of-type:not(.guide-full) > a {
+  .single-child > ul > li:first-of-type:not(.guide-full) > span {
     display: none;
   }
 

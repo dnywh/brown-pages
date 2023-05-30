@@ -10,9 +10,11 @@
 
 {# Create a macro that checks if the item needs to be linked or can be plain text for repeated use within renderNavListItem #}
 {% macro renderTitle(entry) %}
-{% if entry.url == false %}
-    {{ entry.title }}
+{% if entry.url == false or entry.children.length %}
+  {# Show a plain, non-hyperlinked, title if this is a parent page #}
+    <span>{{ entry.title }}</span>
     {% else %}
+    {# Show the link if it is the last descendent (i.e. a proper guide) #}
     <a href="{{ entry.url }}">{{ entry.title }}</a>
     {% endif %}
 {% endmacro %}
