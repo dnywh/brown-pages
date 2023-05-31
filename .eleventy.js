@@ -45,6 +45,7 @@ module.exports = function (config) {
     config.addPassthroughCopy("./src/css/");
     config.addPassthroughCopy("./src/js/");
     config.addPassthroughCopy("./src/assets/");
+    config.addPassthroughCopy("./src/site.webmanifest");
 
     // Shortcodes
     // Image shortcodes from helpers/shortcodes.js
