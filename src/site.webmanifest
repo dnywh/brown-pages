@@ -4,17 +4,17 @@
   "description": "Your local guide to composting",
   "icons": [
     {
-      "src": "/assets/images/favicon/android-chrome-192x192.png",
+      "src": "/assets/images/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/assets/images/favicon/android-chrome-256x256.png",
+      "src": "/assets/images/android-chrome-256x256.png",
       "sizes": "256x256",
       "type": "image/png"
     }
   ],
   "theme_color": "#451900",
-  "background_color": "#451900",
+  "background_color": "#fff6f0",
   "display": "standalone"
 }
