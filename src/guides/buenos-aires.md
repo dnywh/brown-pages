@@ -12,7 +12,7 @@ summary:
 
 {% include "partials/no-residential-service.html" %}
 
-The city runs a public drop-off programme for various waste streams called <a href="https://ciudadverde.gob.ar/puntos-verdes/" target="_blank" rel="noopener">Puntos Verdes</a>. Organic waste is one of these waste streams but it is collected separately in _Compostera Comunitaria_ bins adjacent to the Punto Verde shipping containers.
+The city runs a public drop-off programme for various waste streams called <a href="https://ciudadverde.gob.ar/puntos-verdes/" target="_blank" rel="noopener">Puntos Verdes</a>. Organic waste is one of these waste streams, collected in the _Compostera Comunitaria_ bins adjacent to the Punto Verde shipping containers.
 
 <figure>
   <img src="{% src 'buenos-aires/punto-verde.jpg' %}"

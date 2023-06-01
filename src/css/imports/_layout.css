@@ -22,6 +22,16 @@ body > header {
   display: flex;
   /* TODO: Set this conditionally so it doesn't apply on guide pages? I.e. left-aligned on guide pages */
   justify-content: center;
+  /* TODO: Compress width so this only happens on tap target */
+  transition: opacity 0.15s ease;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  &:active {
+    opacity: 0.65;
+  }
 
   & a {
     text-decoration: none;
