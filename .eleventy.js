@@ -53,6 +53,7 @@ module.exports = function (config) {
     config.addShortcode("srcset", srcset)
 
     // Global data
+    // https://www.stefanjudis.com/snippets/how-to-display-the-build-date-in-eleventy/#edit%3A-eleventy-1.0-comes-with-%60addglobaldata%60
     config.addGlobalData('generatedDate', () => {
         let now = new Date();
         return new Intl.DateTimeFormat(
