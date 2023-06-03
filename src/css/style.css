@@ -4,6 +4,7 @@
 @import "imports/_reset.css" layer(reset);
 /* Custom properties */
 @import "imports/_colors.css";
+@import "imports/_transitions.css";
 /* Everything else */
 @import "imports/_layout.css";
 @import "imports/_typography.css";

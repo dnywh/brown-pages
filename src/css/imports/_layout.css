@@ -23,7 +23,7 @@ body > header {
   /* TODO: Set this conditionally so it doesn't apply on guide pages? I.e. left-aligned on guide pages */
   justify-content: center;
   /* TODO: Compress width so this only happens on tap target */
-  transition: opacity 0.15s ease;
+  transition: var(--transition-opacity-of-text);
 
   &:hover {
     opacity: 0.75;
@@ -134,12 +134,22 @@ body > footer {
     padding: 0;
     font-weight: 500;
     line-height: 120%;
-    color: var(--color-text-2);
 
     & li:not(:last-child)::after {
       display: inline-block;
       margin: 0 0.25rem;
       content: "/";
+    }
+
+    & li,
+    & li > a {
+      /* Give breadcrumb items the same color regardless of whether they are links or not */
+      color: var(--color-text-2);
+      transition: var(--transition-color-of-text);
+    }
+
+    & li > a:hover {
+      color: var(--color-text-primary-2);
     }
   }
 }
