@@ -9,7 +9,7 @@ eleventyNavigation:
 country: Australia
 score: 2
 summary:
-  - Drop-off points in Maroochydoore and Coolum Beach
+  - Drop-off points in Maroochydoore and Yandina
   - High concentration of ShareWaste drop-off points in the area
 ---
 
