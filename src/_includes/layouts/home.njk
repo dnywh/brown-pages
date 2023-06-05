@@ -2,6 +2,18 @@
 
 {% extends "layouts/base.njk" %}
 
+{% block headContent %}
+{# https://developers.google.com/search/docs/appearance/site-names#guidelines #}
+<script type="application/ld+json">
+    {
+      "@context" : "https://schema.org",
+      "@type" : "WebSite",
+      "name" : "{{ site.title }}",
+      "url" : "{{ site.url }}"
+    }
+</script>
+{% endblock %}
+
 {% block bodyContent %}
 
 <section class="intro">

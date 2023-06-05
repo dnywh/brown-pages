@@ -2,6 +2,7 @@
   "title": "Brown Pages",
   "subtitle": "Your local guide to composting",
   "description": "Brown Pages helps find a home for your food scraps, wherever you are.",
+  "url": "https://brownpages.org/",
   "publicEmail": "drafter_preempt0f@icloud.com",
   "repo": {
     "url": "https://github.com/dnywh/brown-pages"

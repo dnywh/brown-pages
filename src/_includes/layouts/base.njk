@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:site_name" content="{{ site.title }}" />
 
-  {# Title #}
+  {# Page title #}
   {% set guideTitleStart = "How to compost " + preposition + " " %}
   {# Set a specific title for the homepage #}
   {% if title === "Home" %}
@@ -21,7 +22,8 @@
       {% set pageTitle = title + " — " + site.title %}
     {% endif %}
   <title>{{ pageTitle }}</title>
-  <meta property="og:title" content="{{ site.title }}" />
+  <meta property="og:title" content="{{ pageTitle }}" />
+  
   
   {# Description #}
   {% if description %}
@@ -32,6 +34,7 @@
   <meta name="description" content="{{ ogDescription }}"/>
 
   {# Eleventy #}
+  {# https://darn.es/you-should-add-a-generator-tag-to-your-eleventy-site/ #}
   <meta name="generator" content="{{ eleventy.generator }}">
 
   {# Stylesheets #}
