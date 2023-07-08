@@ -44,7 +44,7 @@ The following community gardens also accept food waste drop-off:
   width="3936 "
   height="2952"
   loading="lazy">
-  <figcaption>Coolum Commons relies on community volunteers to maintain the site. Help by turning the compost or contributing your time if you can.</figcaption>
+  <figcaption>Coolum Commons relies on community volunteers to maintain the site. Help out by turning the compost or contributing your time.</figcaption>
 </figure>
 
 ## Workshops and resources
