@@ -27,12 +27,12 @@
 {% endblock %}
 
 
-
-
-
 {% block bodyContent %}
 <nav aria-label="Breadcrumb" class="breadcrumb">
     <ul>
+        <li>
+        <a href="/">Index</a>
+        </li>
         {% for entry in crumbs %}{{ renderBreadcrumbListItem(entry) }}{% endfor %}
     </ul>
 </nav>

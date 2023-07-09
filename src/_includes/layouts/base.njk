@@ -7,19 +7,23 @@
 
   {# Page title #}
   {% set guideTitleStart = "How to compost " + preposition + " " %}
+  {% set guideTitleEnd = title + " — " + site.title %}
   {# Set a specific title for the homepage #}
   {% if title === "Home" %}
       {% set pageTitle = site.title + " — " + site.subtitle %}
     {# Set a fancy title for the guides #}
     {% elif tags[0] === "guide" %}
-      {% if prefix %}
-        {% set pageTitle = guideTitleStart + prefix + " " + title + " — " + site.title %}
+      {% if possessive %}
+        {# E.g. This adds the parent in the title. E.g. Melbourne‘s Inner West vs Sydney‘s Inner West #}
+        {% set pageTitle = guideTitleStart + eleventyNavigation.parent + "’s " + guideTitleEnd %}
+      {% elif prefix %}
+        {% set pageTitle = guideTitleStart + prefix + " " + guideTitleEnd %}
       {% else %}
-        {% set pageTitle = guideTitleStart + title + " — " + site.title %}
+        {% set pageTitle = guideTitleStart + guideTitleEnd %}
       {% endif %}
     {# ...and a generic one for everything else #}
     {% else %}
-      {% set pageTitle = title + " — " + site.title %}
+      {% set pageTitle = guideTitleEnd %}
     {% endif %}
   <title>{{ pageTitle }}</title>
   <meta property="og:title" content="{{ pageTitle }}" />
