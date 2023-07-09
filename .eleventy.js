@@ -80,8 +80,8 @@ module.exports = function (config) {
 
     // Make a collection of guides sorted alphabetically
     config.addCollection("guides", (collection) => {
-        // Get all guides
-        const allGuides = collection.getFilteredByGlob("./src/guides/*.md")
+        // Get all guides, search all subfolders
+        const allGuides = collection.getFilteredByGlob("./src/guides/**/*.md")
         // Sort alphabetically
         const sortedAlphabetically = allGuides.sort((a, b) => {
             if (a.data.title > b.data.title) return -1;

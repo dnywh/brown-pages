@@ -1,7 +1,6 @@
 ---
 title: Inner North
 prefix: the
-possessive: true
 council: Merri-bek City Council
 eleventyNavigation:
   key: Inner North
