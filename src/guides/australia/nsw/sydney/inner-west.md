@@ -1,7 +1,7 @@
 ---
 title: Inner West
 prefix: the
-possessive: true
+# possessive: true
 eleventyNavigation:
   key: Inner West
   parent: Sydney
