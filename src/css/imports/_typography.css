@@ -61,8 +61,18 @@ h2 {
 
 /* article content like on guides, compost anywhere page */
 article > h2:not(:first-child) {
+  /* TODO: margin-trim? https://chriscoyier.net/2023/06/12/margin-trim-as-a-best-practice/ */
   /* Only add margin-top if there is preceding content */
   margin-top: 2.5rem;
+}
+
+article > h3 {
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 92%;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
 }
 
 p,
@@ -75,6 +85,10 @@ article > ul {
   &:not(:last-child) {
     /* Only add margin-bottom if there is content after it */
     margin-bottom: 14px;
+  }
+
+  & strong {
+    font-weight: 500;
   }
 }
 

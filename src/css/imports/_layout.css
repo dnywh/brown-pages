@@ -154,6 +154,12 @@ body > footer {
   }
 }
 
+/* Dividers */
+hr {
+  margin-top: 2.25rem;
+  border-top: 1px solid var(--color-divider);
+}
+
 /* Visual containers */
 main > article,
 .directory {

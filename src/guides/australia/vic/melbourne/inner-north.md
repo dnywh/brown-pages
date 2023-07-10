@@ -7,20 +7,44 @@ eleventyNavigation:
   key: Inner North
   parent: Melbourne
 country: Australia
-score: 10
+score: 6
+description: How to compost in Brunswick, Carlton, Coburg, Collingwood, Fitzroy, and Richmond.
 summary:
-  - Residential FOGO pickup service is available in all Merri-bek City Council suburbs
+  - Services are highly dependent on where exactly in Melbourne’s Inner North you are
+  - Residential FOGO pickup service is available in all Merri-bek City Council areas but not yet in Yarra City Council areas
   - Other options such as community gardens and ShareWaste drop-off also exist
 ---
 
-This guide covers how to compost in suburbs serviced by {{ council }}. These include:
-_Batman, Brunswick, Brunswick East, Brunswick West, Coburg, Coburg North, Fawkner, Fitzroy North, Glenroy, Gowanbrae, Hadfield, Merlynston, Moreland, Oak Park, Parkville, Pascoe Vale, Pascoe Vale South and Tullamarine._
+Melbourne’s Inner North covers suburbs split across several council areas, with each council offering widely differing composting services.
 
-{{ council }} has a comprehensive [food and garden organics](https://merri-bek.vic.gov.au/living-in-merri-bek/waste-and-recycling/bins-and-collection-services/food-and-garden-organics-bins/) (FOGO) scheme. Resident FOGO bins are picked up weekly and can be filled with food scraps and garden clippings.
+**{{ council }}** services suburbs including Brunswick, Coburg, Fawkner, and parts of Fitzroy. Suburbs serviced by **Yarra City Council** include Carlton North, Collingwood, Fitzroy, and Richmond.
+
+You can find your council using the [Know Your Council](https://www.vic.gov.au/know-your-council) tool.
+
+## {{ council }}
+
+{{ council }} has a comprehensive [food and garden organics](https://merri-bek.vic.gov.au/living-in-merri-bek/waste-and-recycling/bins-and-collection-services/food-and-garden-organics-bins/) (FOGO) scheme. Resident FOGO bins are picked up weekly and can be filled with both food scraps and garden clippings.
 
 Put food scraps in the bin loose, not in bags or wrapped in paper towel. See the council's [FOGO user guide](https://merri-bek.vic.gov.au/living-in-merri-bek/waste-and-recycling/bins-and-collection-services/food-and-garden-organics-bins#autoAnchor1) for specifics on what can and cannot go in the bin.
 
 Businesses can also [opt-in](https://merri-bek.vic.gov.au/living-in-merri-bek/waste-and-recycling/bins-and-collection-services/bins-at-businesses/#autoAnchor3) to the FOGO service.
+
+### Workshops and resources
+
+{{ council }} offers discounted compost bins and worm farms through [Compost Community](https://www.compostcommunity.com.au/merri-bek.html).
+
+---
+
+## Yarra City Council
+
+Yarra City Council has no residential food scrap pick-up service as part of its
+regular waste collection services. See the drop-off points below.
+
+### Workshops and resources
+
+Yarra City Council runs free online composting workshops via [My Smart Garden](https://mysmartgarden.org.au/). They also offer discounted compost bins and worm farms through [Compost Revolution](https://compostrevolution.com.au/yarra/).
+
+---
 
 ## Drop-off points
 
@@ -29,7 +53,7 @@ Businesses can also [opt-in](https://merri-bek.vic.gov.au/living-in-merri-bek/wa
 The following community gardens also accept food waste drop-off:
 
 - [Pentridge Community Garden](https://www.facebook.com/PentridgeGarden/) on Sunday mornings
-
-## Workshops and resources
-
-{{ council }} offers [discounted compost bins and worm farms](https://www.compostcommunity.com.au/merri-bek.html).
+- [Condell Growers and Sharers](https://condellgrowersandsharers.wordpress.com/composting-pilot/) in Fitzroy
+- [Carlton Neighbourhood House Learning Centre](https://cnlc.org.au/compost-hub/) in Carlton North
+- [Clifton Hill Community Garden](https://www.facebook.com/groups/cliftonhilllanewaygarden/)
+- [North Fitzroy Community Garden](https://rushallgarden.wordpress.com)
