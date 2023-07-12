@@ -25,6 +25,16 @@ You can find your council using the [Know Your Council](https://www.vic.gov.au/k
 
 {{ council }} has a comprehensive [food and garden organics](https://merri-bek.vic.gov.au/living-in-merri-bek/waste-and-recycling/bins-and-collection-services/food-and-garden-organics-bins/) (FOGO) scheme. Resident FOGO bins are picked up weekly and can be filled with both food scraps and garden clippings.
 
+<figure>
+  <img src="{% src 'melbourne/merri-bek-green-bin.jpg' %}"
+  srcset="{% srcset 'melbourne/merri-bek-green-bin.jpg' %}"
+  alt="A green kerbside garbage bin."
+  width="3984"
+  height="2988"
+  loading="lazy">
+  <figcaption>{{ council }}’s green bin for residential food and garden organics. Picked up weekly.</figcaption>
+</figure>
+
 Put food scraps in the bin loose, not in bags or wrapped in paper towel. See the council's [FOGO user guide](https://merri-bek.vic.gov.au/living-in-merri-bek/waste-and-recycling/bins-and-collection-services/food-and-garden-organics-bins#autoAnchor1) for specifics on what can and cannot go in the bin.
 
 Businesses can also [opt-in](https://merri-bek.vic.gov.au/living-in-merri-bek/waste-and-recycling/bins-and-collection-services/bins-at-businesses/#autoAnchor3) to the FOGO service.
