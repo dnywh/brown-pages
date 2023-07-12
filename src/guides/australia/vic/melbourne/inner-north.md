@@ -29,8 +29,8 @@ You can find your council using the [Know Your Council](https://www.vic.gov.au/k
   <img src="{% src 'melbourne/merri-bek-green-bin.jpg' %}"
   srcset="{% srcset 'melbourne/merri-bek-green-bin.jpg' %}"
   alt="A green kerbside garbage bin."
-  width="3984"
-  height="2988"
+  width="2482"
+  height="3310"
   loading="lazy">
   <figcaption>{{ council }}’s green bin for residential food and garden organics. Picked up weekly.</figcaption>
 </figure>
