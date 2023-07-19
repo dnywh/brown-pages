@@ -244,11 +244,12 @@ main > article.guide {
 .date,
 .button-action {
   font-size: 14px;
-  line-height: 92%;
+  line-height: 100%;
   letter-spacing: -0.03em;
   display: block;
   /* Stop link tap target(s) from taking full width */
   width: max-content;
+  max-width: 100%;
 }
 
 .date {
@@ -283,6 +284,8 @@ main > article.guide {
     /* or 20px */
     color: var(--color-text-primary-2);
     letter-spacing: -0.02em;
+    padding-left: 1.75rem;
+    padding-right: 1rem;
 
     & li:not(:last-of-type) {
       padding-bottom: 0.75rem;
