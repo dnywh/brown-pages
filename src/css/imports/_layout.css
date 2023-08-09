@@ -16,7 +16,7 @@ body {
 
 /* Site header */
 body > header {
-  /* Overdeclared for below TODO about justify-content */
+  /* Over-declared for below TODO about justify-content */
   margin: 1.5rem 1.5rem 3rem;
   /* Align contents center */
   display: flex;
