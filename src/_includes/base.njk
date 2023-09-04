@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:site_name" content="{{ site.title }}" />
+    <meta name="author" content="{{ site.author }}" />
+    <meta name="description" content="{{ site.description }}"/>
+    <meta name="generator" content="{{ eleventy.generator }}">
+
+    {# Page title #}
+    {# Homepage: 'Site Title – Site description goes here' #}
+    {% if title === "Home" %}
+      {% set pageTitle = site.title + " — " + site.description %}
+    {# Other subpage: 'Page Title – Site Title'  #}
+    {% elif title %}
+      {% set pageTitle = title + " — " + site.title %}
+    {# Anything else that falls through the cracks: 'Site Title'  #}
+    {% else %}
+      {% set pageTitle = site.title %}
+    {% endif %}
+    <title>{{ pageTitle }}</title>
+
+    {# Styles #}
+    <link rel="stylesheet" href="{{ '/style.css' | url }}">
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <main>
+        {{ content | safe }}
+    </main>
+</body>
+</html>

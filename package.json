@@ -1,21 +1,16 @@
 {
-  "name": "brown-pages",
+  "name": "sprout",
   "version": "1.0.0",
-  "description": "Your local guide to composting",
-  "main": "index.js",
+  "description": "An Eleventy template for budding new ideas.",
+  "main": ".eleventy.js",
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy"
   },
-  "author": "Danny White",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1",
-    "@11ty/eleventy-navigation": "^0.3.5"
-  },
-  "dependencies": {
-    "@11tyrocks/eleventy-plugin-lightningcss": "^1.1.2",
-    "html-minifier": "^4.0.0",
-    "markdown-it-link-attributes": "^4.0.1"
+    "@11ty/eleventy": "^2.0.1"
   }
 }
