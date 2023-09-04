@@ -1,0 +1,7 @@
+{
+  "layout": "layouts/guide.njk",
+  "date": "git Last Modified",
+  "permalink": "/{{ country | slugify }}/{{ title | slugify }}{% if possessive %}-{{ eleventyNavigation.parent | slugify }}{% endif %}/",
+  "preposition": "in",
+  "tags": "guide"
+}

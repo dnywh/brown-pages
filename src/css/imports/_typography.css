@@ -1,0 +1,101 @@
+body,
+a {
+  font-family: "ITC Franklin Gothic", system-ui, sans-serif;
+  color: var(--color-text-primary);
+}
+
+h1 {
+  font-size: 48px;
+  line-height: 92%;
+  letter-spacing: -0.045em;
+}
+
+/* Homepage, bespoke pages */
+main > h1,
+main > .intro {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+/* Target the homepage subtitle alone */
+main > .intro > h1.subtitle {
+  max-width: 12ch;
+  margin: 0 auto;
+  /* The above will do the optical trick (albeit manually) until the below is supported */
+  /* https://clagnut.com/blog/2424 */
+  /* https://caniuse.com/mdn-css_properties_text-wrap */
+  /* TODO: Update this to use the below when it is available */
+  /* text-wrap: balance; */
+}
+
+main > .intro > p {
+  margin-top: 1rem;
+  padding: 0 1rem;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 120%;
+  /* text-align: center; */
+  letter-spacing: -0.035em;
+  color: var(--color-text-2);
+}
+
+/* Guides only */
+article > header > h1 {
+  margin-bottom: 1.5rem;
+  & span {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 92%;
+    letter-spacing: -0.035em;
+  }
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 92%;
+  letter-spacing: -0.04em;
+  margin-bottom: 0.75rem;
+}
+
+/* article content like on guides, compost anywhere page */
+article > h2:not(:first-child) {
+  /* TODO: margin-trim? https://chriscoyier.net/2023/06/12/margin-trim-as-a-best-practice/ */
+  /* Only add margin-top if there is preceding content */
+  margin-top: 2.5rem;
+}
+
+article > h3 {
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 92%;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
+}
+
+p,
+article > ul {
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: -0.0175em;
+  color: var(--color-text-primary-2);
+
+  &:not(:last-child) {
+    /* Only add margin-bottom if there is content after it */
+    margin-bottom: 14px;
+  }
+
+  & strong {
+    font-weight: 500;
+  }
+}
+
+p {
+  line-height: 145%;
+}
+
+article > ul {
+  line-height: 160%;
+}

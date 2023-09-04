@@ -1,0 +1,11 @@
+/* TODO: Why is this whole directory (JSON, _ files) getting built to /public? */
+/* This line says it shouldn't: https://github.com/5t3ph/eleventy-plugin-lightningcss#bundling-import-prefix */
+@import "imports/_fonts.css";
+@import "imports/_reset.css" layer(reset);
+/* Custom properties */
+@import "imports/_colors.css";
+@import "imports/_transitions.css";
+/* Everything else */
+@import "imports/_layout.css";
+@import "imports/_typography.css";
+@import "imports/_buttons.css";
