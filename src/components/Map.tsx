@@ -56,7 +56,7 @@ export default function Map({
       .catch((err) => console.error("Failed to load hosts.json:", err));
   }, [onSelectHost]);
 
-  // Center the map on the selected host only if `centerOnHost` is provided
+  // Center the map on the selected host when `centerOnHost` changes
   useEffect(() => {
     if (centerOnHost && map.current) {
       map.current.flyTo({

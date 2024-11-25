@@ -7,12 +7,10 @@ import {
 import Map from "./components/Map";
 import HostDetails from "./components/HostDetails";
 import { Host } from "./types/Host";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [selectedHost, setSelectedHost] = useState<Host | null>(null);
-  const [centerMapInitially, setCenterMapInitially] = useState(false);
-  const initializedRef = useRef(false); // Tracks whether the map has already centered
 
   // Fetch host by ID when the URL changes
   const handleRouteChange = async (id: string | undefined) => {
@@ -25,12 +23,6 @@ function App() {
     const hosts: Host[] = await response.json();
     const host = hosts.find((h) => h.id === id); // Assume hosts have unique `id` properties
     setSelectedHost(host || null);
-
-    // Center map only if this is the first load and the URL is for a host
-    if (!initializedRef.current) {
-      setCenterMapInitially(true);
-      initializedRef.current = true;
-    }
   };
 
   return (
@@ -48,9 +40,8 @@ function App() {
                 <Map
                   onSelectHost={(host) => {
                     setSelectedHost(host);
-                    setCenterMapInitially(false); // Prevent further map re-centering
                   }}
-                  centerOnHost={centerMapInitially ? selectedHost : null}
+                  centerOnHost={selectedHost}
                 />
               }
             />
