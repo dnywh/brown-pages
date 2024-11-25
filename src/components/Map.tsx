@@ -30,7 +30,7 @@ export default function Map({ onSelectHost }: MapProps): JSX.Element {
       .then((response) => response.json())
       .then((hosts: Host[]) => {
         hosts.forEach((host) => {
-          const marker = new maptilersdk.Marker({ color: "#FF0000" })
+          const marker = new maptilersdk.Marker({ color: "#451900" })
             .setLngLat([host.longitude, host.latitude])
             .addTo(map.current!);
 
