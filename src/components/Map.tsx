@@ -45,7 +45,7 @@ export default function Map({ onSelectHost }: MapProps): JSX.Element {
   }, [tokyo.lng, tokyo.lat, zoom, onSelectHost]);
 
   return (
-    <div className="relative w-full h-[calc(100vh-77px)]">
+    <div className="relative w-full h-full rounded-xl overflow-hidden">
       <div ref={mapContainer} className="absolute w-full h-full" />
     </div>
   );

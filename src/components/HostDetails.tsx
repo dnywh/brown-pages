@@ -1,3 +1,4 @@
+import Button from "./Button.tsx";
 import { Host } from "../types/Host";
 
 interface HostDetailsProps {
@@ -16,6 +17,7 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
       </button>
       <h2 className="text-2xl font-bold">{host.name}</h2>
       <p className="text-gray-700">{host.details}</p>
+      <Button title={"Contact " + host.name} />
     </div>
   );
 }

@@ -9,14 +9,22 @@ function App() {
 
   return (
     <>
-      <h1 className="text-6xl font-bold underline bg-sky-200">Brown Pages</h1>
-      <Map onSelectHost={setSelectedHost} />
-      {selectedHost && (
-        <HostDetails
-          host={selectedHost}
-          onClose={() => setSelectedHost(null)}
-        />
-      )}
+      <main className="p-4 flex gap-4 w-dvw h-dvh">
+        <header>
+          <h1 className="font-bold">BP</h1>
+        </header>
+
+        <div className="grow">
+          <Map onSelectHost={setSelectedHost} />
+        </div>
+        <div className="min-w-80">Host details show here</div>
+        {selectedHost && (
+          <HostDetails
+            host={selectedHost}
+            onClose={() => setSelectedHost(null)}
+          />
+        )}
+      </main>
     </>
   );
 }
