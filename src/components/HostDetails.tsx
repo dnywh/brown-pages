@@ -37,9 +37,11 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
       <p className="text-gray-700">{host.lastActive}</p>
 
       <h3 className="text-xl font-semibold mb-2 mt-4">About</h3>
-      <p className="text-gray-700">{host.details}</p>
+      <p className="text-gray-700 mb-4">{host.details}</p>
 
-      <Button title={"Contact " + host.name} />
+      <div className="bg-white p-4 flex rounded-2xl">
+        <Button title={"Contact " + host.name} />
+      </div>
 
       <div>
         <h3 className="text-xl font-semibold mb-2 mt-4">Accepted Items</h3>
