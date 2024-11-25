@@ -34,7 +34,7 @@ Fill in the values from Firebase.
 
 4. Fetch runtime config and set MapTiler key dynamically:
 
-Runtime environment variables (such as the MapTiler API key) are stored in Firebase's runtime config. You'll need to generate that locally:
+Runtime environment variables (such as the MapTiler API key) are stored in Firebase's runtime config. First install the Firebase CLI following their isntructions. Then generate those environment variables locally:
 
 ```bash
 firebase functions:config:get > .runtimeconfig.json
@@ -49,21 +49,26 @@ npm run dev
 
 ## Deployment
 
-To deploy the app to Firebase Hosting:
-
-1. Fetch the Firebase runtime config and set the MapTiler API key dynamically:
-
-```bash
-firebase functions:config:get > .runtimeconfig.json
-export VITE_MAPTILER_API_KEY=$(node -p "require('./.runtimeconfig.json').maptiler.key")
-```
-
-2. Build and deploy
+To build and deploy the app to Firebase Hosting:
 
 ```bash
 npm run build
 firebase deploy
 ```
+
+### Possible issues
+
+#### MapTiler API key isn't being passed locally
+
+Check that you've got this from Firebase:
+
+```bash
+firebase functions:config:get
+```
+
+#### MapTiler API key isn't being passed on GitHub merge or pull request actions
+
+Make sure you've added the MapTiler API key to the GitHub repo's _Repository secrets_ section under MAPTILER_API_KEY.
 
 ## Contributing
 

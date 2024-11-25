@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Button from "./Button.tsx";
 import { Host } from "../types/Host";
 
@@ -7,6 +8,8 @@ interface HostDetailsProps {
 }
 
 export default function HostDetails({ host, onClose }: HostDetailsProps) {
+  const navigate = useNavigate(); // Use the navigate function
+
   if (!host) {
     return (
       <div
@@ -21,13 +24,18 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
     );
   }
 
+  const handleClose = () => {
+    onClose(); // Call the parent-provided close handler
+    navigate("/"); // Navigate back to the root
+  };
+
   return (
     <div
       className="bg-slate-100 p-4 rounded-xl 
         fixed bottom-0 left-0 w-full md:static md:w-96 md:h-full md:overflow-y-auto"
     >
       <button
-        onClick={onClose}
+        onClick={handleClose}
         className="absolute p-4 top-2 right-2 text-gray-500 hover:text-black"
       >
         Close
