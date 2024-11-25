@@ -1,0 +1,16 @@
+[
+  {
+    "id": "host1",
+    "name": "John's Compost",
+    "latitude": 35.6846,
+    "longitude": 139.7525,
+    "details": "Accepts food scraps"
+  },
+  {
+    "id": "host2",
+    "name": "Community Garden",
+    "latitude": 35.5846,
+    "longitude": 139.8525,
+    "details": "Open hours: 9 AM - 6 PM"
+  }
+]

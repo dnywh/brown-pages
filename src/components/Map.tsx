@@ -21,13 +21,30 @@ export default function Map(): JSX.Element {
       zoom: zoom,
     });
 
-    new maptilersdk.Marker({ color: "#FF0000" })
-      .setLngLat([139.7525, 35.6846])
-      .addTo(map.current);
-
-    new maptilersdk.Marker({ color: "#FF0000" })
-      .setLngLat([139.8525, 35.5846])
-      .addTo(map.current);
+    // Fetch host data and add markers
+    fetch("/data/hosts.json")
+      .then((response) => response.json())
+      .then((hosts) => {
+        hosts.forEach(
+          (host: {
+            id: string;
+            name: string;
+            latitude: number;
+            longitude: number;
+            details: string;
+          }) => {
+            new maptilersdk.Marker({ color: "#FF0000" })
+              .setLngLat([host.longitude, host.latitude])
+              .setPopup(
+                new maptilersdk.Popup().setHTML(
+                  `<b>${host.name}</b><br>${host.details}`
+                )
+              ) // Add a popup for more details
+              .addTo(map.current!);
+          }
+        );
+      })
+      .catch((err) => console.error("Failed to load hosts.json:", err));
   }, [tokyo.lng, tokyo.lat, zoom]);
 
   return (
