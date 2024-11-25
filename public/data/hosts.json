@@ -12,5 +12,12 @@
     "latitude": 35.5846,
     "longitude": 139.8525,
     "details": "Open hours: 9 AM - 6 PM"
+  },
+  {
+    "id": "host3",
+    "name": "Test Host",
+    "latitude": 34.5846,
+    "longitude": 139.8525,
+    "details": "Foo bar"
   }
 ]
