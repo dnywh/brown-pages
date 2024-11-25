@@ -17,13 +17,11 @@ function App() {
         <div className="grow">
           <Map onSelectHost={setSelectedHost} />
         </div>
-        <div className="min-w-80">Host details show here</div>
-        {selectedHost && (
-          <HostDetails
-            host={selectedHost}
-            onClose={() => setSelectedHost(null)}
-          />
-        )}
+
+        <HostDetails
+          host={selectedHost}
+          onClose={() => setSelectedHost(null)}
+        />
       </main>
     </>
   );
