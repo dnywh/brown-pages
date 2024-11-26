@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Map from "./Map";
 import HostDetails from "./HostDetails";
-import { useState } from "react";
 import { Host } from "../types/Host";
 
 interface MapLayoutProps {
@@ -10,21 +9,21 @@ interface MapLayoutProps {
 
 export default function MapLayout({ hostId }: MapLayoutProps) {
   const [selectedHost, setSelectedHost] = useState<Host | null>(null);
+  const [hosts, setHosts] = useState<Host[]>([]);
 
   useEffect(() => {
-    if (hostId) {
-      // Fetch or find the host data by `hostId`
-      fetch(`/data/hosts.json`)
-        .then((response) => response.json())
-        .then((hosts: Host[]) => {
-          const foundHost = hosts.find((host) => host.id === hostId);
-          if (foundHost) {
-            setSelectedHost(foundHost);
-          }
-        })
-        .catch((err) => console.error("Failed to load hosts.json:", err));
-    }
-  }, [hostId]); // Run this effect when `hostId` changes
+    // Fetch host data once
+    fetch("/data/hosts.json")
+      .then((response) => response.json())
+      .then((data: Host[]) => {
+        setHosts(data);
+        if (hostId) {
+          const foundHost = data.find((host) => host.id === hostId);
+          setSelectedHost(foundHost || null);
+        }
+      })
+      .catch((err) => console.error("Failed to load hosts.json:", err));
+  }, [hostId]);
 
   return (
     <div className="flex gap-4 h-full">
@@ -33,6 +32,7 @@ export default function MapLayout({ hostId }: MapLayoutProps) {
         <Map
           onSelectHost={(host) => setSelectedHost(host)}
           centerOnHost={selectedHost}
+          hosts={hosts} // Pass hosts data to Map component
         />
       </div>
       {/* HostDetails pane aligned to the right */}

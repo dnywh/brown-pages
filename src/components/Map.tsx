@@ -7,19 +7,23 @@ import { Host } from "../types/Host";
 interface MapProps {
   onSelectHost: (host: Host) => void; // Callback to update the selected host
   centerOnHost?: Host | null; // Optional host to center the map on
+  hosts: Host[]; // Array of hosts passed from the parent
 }
 
 export default function Map({
   onSelectHost,
   centerOnHost,
+  hosts,
 }: MapProps): JSX.Element {
   const navigate = useNavigate(); // React Router navigation hook
   const mapContainer = useRef<HTMLDivElement | null>(null); // Map container ref
   const map = useRef<maptilersdk.Map | null>(null); // Map instance ref
+  const markers = useRef<maptilersdk.Marker[]>([]); // Keep track of markers
   const defaultCenter = { lng: 139.753, lat: 35.6844 }; // Default map center
   const defaultZoom = 11; // Default zoom level
 
-  maptilersdk.config.apiKey = import.meta.env.VITE_MAPTILER_API_KEY as string; // MapTiler API key
+  // Configure MapTiler API key
+  maptilersdk.config.apiKey = import.meta.env.VITE_MAPTILER_API_KEY as string;
 
   // Function to handle pin clicks
   const handlePinClick = (host: Host) => {
@@ -37,24 +41,29 @@ export default function Map({
       center: [defaultCenter.lng, defaultCenter.lat],
       zoom: defaultZoom,
     });
+  }, []);
 
-    // Fetch host data and add markers
-    fetch("/data/hosts.json")
-      .then((response) => response.json())
-      .then((hosts: Host[]) => {
-        hosts.forEach((host) => {
-          const marker = new maptilersdk.Marker({ color: "#451900" })
-            .setLngLat([host.longitude, host.latitude])
-            .addTo(map.current!);
+  useEffect(() => {
+    if (!map.current) return;
 
-          // Attach click event listener to the marker's DOM element
-          marker.getElement().addEventListener("click", () => {
-            handlePinClick(host); // Trigger pin click handling logic
-          });
-        });
-      })
-      .catch((err) => console.error("Failed to load hosts.json:", err));
-  }, [onSelectHost]);
+    // Remove existing markers
+    markers.current.forEach((marker) => marker.remove());
+    markers.current = [];
+
+    // Add markers for hosts
+    hosts.forEach((host) => {
+      const marker = new maptilersdk.Marker({ color: "#451900" })
+        .setLngLat([host.longitude, host.latitude])
+        .addTo(map.current!);
+
+      // Attach click event listener to the marker's DOM element
+      marker.getElement().addEventListener("click", () => {
+        handlePinClick(host); // Trigger pin click handling logic
+      });
+
+      markers.current.push(marker); // Store the marker reference
+    });
+  }, [hosts]);
 
   // Center the map on the selected host when `centerOnHost` changes
   useEffect(() => {
