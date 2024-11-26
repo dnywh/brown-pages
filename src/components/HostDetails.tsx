@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import Button from "./Button.tsx";
 import { Host } from "../types/Host";
 
 interface HostDetailsProps {
@@ -49,7 +48,12 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
       <p className="text-gray-700 mb-4">{host.details}</p>
 
       <div className="bg-white p-4 flex rounded-2xl">
-        <Button title={"Contact " + host.name} />
+        <button
+          onClick={() => navigate(`/chat/${host.id}`)} // Navigate to the chat view
+          className="px-4 py-2 bg-green-500 text-white rounded-lg"
+        >
+          Contact {host.name}
+        </button>
       </div>
 
       <div>

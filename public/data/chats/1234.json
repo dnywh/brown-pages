@@ -1,0 +1,14 @@
+[
+  {
+    "id": "msg1",
+    "sender": "user",
+    "text": "Hi, can I drop off my scraps?",
+    "timestamp": "2024-11-25 10:00 AM"
+  },
+  {
+    "id": "msg2",
+    "sender": "host",
+    "text": "Sure, anytime between 3-5 PM works!",
+    "timestamp": "2024-11-25 10:15 AM"
+  }
+]

@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TabBar from "./components/TabBar";
-import Chats from "./components/Chats";
-import Account from "./components/Account";
 import MapLayout from "./components/MapLayout";
+import Chats from "./components/Chats";
+import Chat from "./components/Chat";
+import Account from "./components/Account";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/host/:id" element={<MapLayout />} />
             {/* Other routes */}
             <Route path="/chats" element={<Chats />} />
+            <Route path="/chat/:id" element={<Chat />} />
             <Route path="/account" element={<Account />} />
           </Routes>
         </div>

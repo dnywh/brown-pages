@@ -1,0 +1,14 @@
+[
+  {
+    "id": "msg1",
+    "sender": "user",
+    "text": "foo bar",
+    "timestamp": "2024-11-25 10:00 AM"
+  },
+  {
+    "id": "msg2",
+    "sender": "host",
+    "text": "no!",
+    "timestamp": "2024-11-25 10:15 AM"
+  }
+]
