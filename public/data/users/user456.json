@@ -1,0 +1,10 @@
+{
+  "id": "user123",
+  "name": {
+    "firstName": "Sally",
+    "lastName": "Beagle"
+  },
+  "email": "sally@example.com",
+  "listings": ["listing321"],
+  "lastActive": "2 months ago"
+}

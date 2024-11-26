@@ -1,0 +1,9 @@
+{
+  "id": "user000",
+  "name": {
+    "firstName": "Danny",
+    "lastName": "White"
+  },
+  "email": "danny@example.com",
+  "lastActive": "today"
+}

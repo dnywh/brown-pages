@@ -1,11 +1,14 @@
 export interface Listing {
   id: string;
-  name: string;
-  lastActive: string;
+  type: "private" | "public" | "business"; // Adjust based on your category names
+  name: string; // For public/business listings
+  owner: {
+    firstName: string;
+    lastName: string;
+  };
   locationName: string;
-  latitude: number; // Use optional fields where not always required
-  longitude: number;
+  lastActive: string;
   details: string;
-  accepted: string[]; // Array of accepted items
-  notAccepted: string[]; // Array of not accepted items
+  accepted: string[];
+  notAccepted: string[];
 }

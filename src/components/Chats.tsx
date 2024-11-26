@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface ChatPreview {
-  id: string; // Chat ID
-  listingName: string; // Listing name
-  lastMessage: string; // Latest message
-  timestamp: string; // Timestamp of the latest message
+  id: string;
+  listingName: string;
+  lastMessage: string;
+  lastUpdated: string;
+  participantName: string; // Name of the other participant
 }
 
 export default function Chats() {
@@ -15,44 +16,61 @@ export default function Chats() {
   useEffect(() => {
     const fetchChats = async () => {
       try {
-        // Fetch listings data
-        const listingsResponse = await fetch("/data/listings.json");
-        if (!listingsResponse.ok) {
-          throw new Error(
-            `Failed to fetch listings.json: ${listingsResponse.status}`
+        // Get all chat files (for now, list them manually or mock fetching them)
+        const chatIDs = ["chat123", "chat456"]; // Replace with dynamic file list later
+        const chatPromises = chatIDs.map((chatID) =>
+          fetch(`/data/chats/${chatID}.json`).then((res) => res.json())
+        );
+
+        const rawChats = await Promise.all(chatPromises);
+
+        // Fetch user and listing data
+        const userPromises = new Set<string>();
+        const listingPromises = new Set<string>();
+
+        rawChats.forEach((chat) => {
+          chat.participants.forEach((participant) =>
+            userPromises.add(participant)
           );
-        }
-        const listings = await listingsResponse.json();
+          if (chat.listingID) listingPromises.add(chat.listingID);
+        });
 
-        // Filter and enrich chats with messages
-        const chatPreviews: ChatPreview[] = [];
+        const usersData = await Promise.all(
+          Array.from(userPromises).map((userID) =>
+            fetch(`/data/users/${userID}.json`).then((res) => res.json())
+          )
+        );
 
-        for (const listing of listings) {
-          try {
-            // Attempt to fetch the chat file for this listing
-            const chatResponse = await fetch(`/data/chats/${listing.id}.json`);
-            if (!chatResponse.ok) continue; // Skip if no chat exists for this listing
+        const listingsData = await Promise.all(
+          Array.from(listingPromises).map((listingID) =>
+            fetch(`/data/listings/${listingID}.json`).then((res) => res.json())
+          )
+        );
 
-            const chatMessages = await chatResponse.json();
+        const usersByID = Object.fromEntries(
+          usersData.map((user) => [user.id, user])
+        );
+        const listingsByID = Object.fromEntries(
+          listingsData.map((listing) => [listing.id, listing])
+        );
 
-            // Use the latest message from the chat
-            const latestMessage = chatMessages[chatMessages.length - 1];
+        // Map raw chat data to ChatPreview objects
+        const chatPreviews = rawChats.map((chat) => {
+          const listing = listingsByID[chat.listingID];
+          const otherParticipantID = chat.participants.find(
+            (id) => id !== "user000"
+          ); // Replace with current user ID
+          const otherParticipant = usersByID[otherParticipantID];
 
-            if (latestMessage) {
-              chatPreviews.push({
-                id: listing.id,
-                listingName: listing.name,
-                lastMessage: latestMessage.text,
-                timestamp: latestMessage.timestamp,
-              });
-            }
-          } catch (err) {
-            console.warn(
-              `No chat file found for listing ID: ${listing.id}`,
-              err
-            );
-          }
-        }
+          return {
+            id: chat.id,
+            listingName: listing?.name || "Unknown Listing",
+            lastMessage: chat.lastMessage,
+            lastUpdated: chat.lastUpdated,
+            participantName:
+              otherParticipant?.name?.firstName || "Unknown User",
+          };
+        });
 
         setChats(chatPreviews);
       } catch (error) {
@@ -78,7 +96,9 @@ export default function Chats() {
             >
               <h3 className="font-semibold">{chat.listingName}</h3>
               <p className="text-gray-500 truncate">{chat.lastMessage}</p>
-              <small className="text-gray-400">{chat.timestamp}</small>
+              <small className="text-gray-400">
+                {chat.participantName} · {chat.lastUpdated}
+              </small>
             </li>
           ))}
         </ul>

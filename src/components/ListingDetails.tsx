@@ -6,6 +6,13 @@ interface ListingDetailsProps {
   onClose: () => void;
 }
 
+function getListingName(listing: Listing) {
+  if (listing.type === "private") {
+    return `${listing.owner.firstName} ${listing.owner.lastName.slice(0, 1)}`;
+  }
+  return listing.name;
+}
+
 export default function ListingDetails({
   listing,
   onClose,
@@ -43,7 +50,7 @@ export default function ListingDetails({
       >
         Close
       </button>
-      <h2 className="text-2xl font-bold">{listing.name}</h2>
+      <h2 className="text-2xl font-bold">{getListingName(listing)}</h2>
       <p className="text-gray-700">{listing.locationName}</p>
       <p className="text-gray-700">{listing.lastActive}</p>
 
@@ -55,7 +62,7 @@ export default function ListingDetails({
           onClick={() => navigate(`/chat/${listing.id}`)} // Navigate to the chat view
           className="px-4 py-2 bg-green-500 text-white rounded-lg"
         >
-          Contact {listing.name}
+          Contact {getListingName(listing)}
         </button>
       </div>
 

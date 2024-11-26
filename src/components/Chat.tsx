@@ -1,11 +1,25 @@
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 interface Message {
-  id: string; // Unique message ID
-  sender: string; // "user" or "listing"
+  id: string;
+  sender: string; // User or listing ID
   text: string;
   timestamp: string;
+}
+
+interface Chat {
+  id: string;
+  listingID: string;
+  participants: string[];
+}
+
+interface User {
+  id: string;
+  name: {
+    firstName: string;
+    lastName: string;
+  };
 }
 
 interface Listing {
@@ -14,102 +28,102 @@ interface Listing {
 }
 
 export default function Chat() {
-  const { id } = useParams(); // Chat ID from the route
-  const [messages, setMessages] = useState<Message[]>([]); // Chat history
-  const [recipientName, setRecipientName] = useState<string>(""); // Listing's name
-  const [newMessage, setNewMessage] = useState(""); // Message composer
+  const { id } = useParams(); // Extract chat ID from the route
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [chat, setChat] = useState<Chat | null>(null);
+  const [users, setUsers] = useState<{ [key: string]: User }>({});
+  const [listing, setListing] = useState<Listing | null>(null);
+  const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
-    // Fetch the recipient's name from listings.json
-    const fetchRecipientName = async () => {
+    const fetchChatData = async () => {
       try {
-        const response = await fetch("/data/listings.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch listings.json");
+        // Fetch messages
+        const messagesResponse = await fetch(`/data/chats/${id}/messages.json`);
+        console.log("Messages Response:", messagesResponse); // Log response
+        if (!messagesResponse.ok) {
+          throw new Error(`HTTP error! status: ${messagesResponse.status}`);
         }
-        const listings: Listing[] = await response.json();
-        const recipient = listings.find((listing) => listing.id === id);
-        if (recipient) {
-          setRecipientName(recipient.name);
-        } else {
-          setRecipientName("Unknown Listing");
+        const contentType = messagesResponse.headers.get("Content-Type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error(`Expected JSON but got ${contentType}`);
         }
+
+        const messagesData: Message[] = await messagesResponse.json();
+        console.log("Fetched Messages Data:", messagesData); // Debugging
+        setMessages(messagesData);
       } catch (error) {
-        console.error("Error fetching recipient name:", error);
-        setRecipientName("Error");
+        console.error("Failed to fetch messages:", error);
       }
     };
 
-    fetchRecipientName();
+    fetchChatData();
   }, [id]);
 
-  useEffect(() => {
-    // Fetch chat messages for this conversation
-    const fetchMessages = async () => {
-      try {
-        const response = await fetch(`/data/chats/${id}.json`);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch messages for chat ID: ${id}`);
-        }
-        const chatHistory = await response.json();
-        setMessages(chatHistory);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      }
-    };
-
-    fetchMessages();
-  }, [id]);
-
-  // Handle sending a new message
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
 
-    const message: Message = {
-      id: Date.now().toString(),
-      sender: "user",
+    const newMsg: Message = {
+      id: `msg${Date.now()}`,
+      sender: "user000", // Replace with the logged-in user's ID
       text: newMessage,
-      timestamp: new Date().toLocaleString(),
+      timestamp: new Date().toISOString(),
     };
 
-    // Optimistically update the chat history
-    setMessages((prevMessages) => [...prevMessages, message]);
+    // Optimistically update the UI
+    setMessages((prevMessages) => [...prevMessages, newMsg]);
     setNewMessage("");
 
-    // Simulate saving to the backend
-    fetch(`/data/chats/${id}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(message),
-    }).catch((err) => console.error("Failed to send message:", err));
+    try {
+      // Append the new message to the messages.json file
+      await fetch(`/data/chats/${id}/messages.json`, {
+        method: "POST", // Use a mock or adapt for local development
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newMsg),
+      });
+    } catch (error) {
+      console.error("Failed to send message:", error);
+    }
   };
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Chat with {recipientName}</h2>
+      <h2 className="text-2xl font-bold mb-4">
+        Chat with {listing?.name || "Unknown Listing"}
+      </h2>
       <div className="flex flex-col h-full">
-        {/* Message list */}
+        {/* Message List */}
         <div className="flex-1 overflow-y-auto border p-4 rounded-lg mb-4">
           {messages.length === 0 ? (
             <p>No messages yet. Start the conversation!</p>
           ) : (
-            messages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`mb-2 p-2 rounded-lg ${
-                  msg.sender === "user"
-                    ? "bg-blue-100 self-end text-right"
-                    : "bg-gray-100 self-start text-left"
-                }`}
-              >
-                <p>{msg.text}</p>
-                <small className="text-gray-500 text-xs">{msg.timestamp}</small>
-              </div>
-            ))
+            messages.map((msg) => {
+              const senderName =
+                users[msg.sender]?.name?.firstName || "Unknown";
+              return (
+                <div
+                  key={msg.id}
+                  className={`mb-2 p-2 rounded-lg ${
+                    msg.sender === "user000" // Replace with the logged-in user's ID
+                      ? "bg-blue-100 self-end text-right"
+                      : "bg-gray-100 self-start text-left"
+                  }`}
+                >
+                  <p>
+                    <strong>{senderName}</strong>: {msg.text}
+                  </p>
+                  <small className="text-gray-500 text-xs">
+                    {msg.timestamp}
+                  </small>
+                </div>
+              );
+            })
           )}
         </div>
 
-        {/* Message composer */}
+        {/* Message Composer */}
         <div className="flex">
           <input
             type="text"

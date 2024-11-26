@@ -1,7 +1,12 @@
 [
   {
     "id": "1234",
-    "name": "John's Compost",
+    "type": "private",
+    "name": "John's First Name Only",
+    "owner": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
     "lastActive": "4 months ago",
     "locationName": "Suburb, State",
     "latitude": 35.6846,
@@ -26,7 +31,12 @@
   },
   {
     "id": "4321",
+    "type": "public",
     "name": "Community Garden",
+    "owner": {
+      "firstName": "Sally",
+      "lastName": "Beagle"
+    },
     "lastActive": "2 days ago",
     "locationName": "Suburb, State",
     "latitude": 35.5846,
@@ -49,7 +59,12 @@
   },
   {
     "id": "5678",
-    "name": "Test listing",
+    "type": "public",
+    "name": "ACME Cafe",
+    "owner": {
+      "firstName": "Jan",
+      "lastName": "Kees"
+    },
     "lastActive": "3 weeks ago",
     "locationName": "Suburb, State",
     "latitude": 35.5946,
