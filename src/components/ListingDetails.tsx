@@ -98,7 +98,7 @@ export default function ListingDetails({
       {/* Close button */}
       <button
         onClick={handleClose}
-        className="absolute p-4 top-2 right-2 text-gray-500 hover:text-black"
+        className="p-4 text-gray-500 hover:text-black"
       >
         Close
       </button>
