@@ -23,17 +23,14 @@ export default function Map({
   const defaultCenter = { lng: 139.753, lat: 35.6844 }; // Default map center
   const defaultZoom = 11; // Default zoom level
 
-  // Configure MapTiler API key
   maptilersdk.config.apiKey = import.meta.env.VITE_MAPTILER_API_KEY as string;
 
-  // Function to handle pin clicks
   const handlePinClick = (listing: Listing) => {
     navigate(`/listing/${listing.id}`); // Update the URL
     onSelectListing(listing); // Notify parent component of the selected listing
   };
 
   useEffect(() => {
-    // Initialize the map if it hasn't been already
     if (map.current || !mapContainer.current) return;
 
     map.current = new maptilersdk.Map({
@@ -47,37 +44,33 @@ export default function Map({
   useEffect(() => {
     if (!map.current) return;
 
-    // Remove existing markers
     markers.current.forEach((marker) => marker.remove());
     markers.current = [];
 
-    // Add markers for listings
     listings.forEach((listing) => {
       const marker = new maptilersdk.Marker({ color: "#451900" })
         .setLngLat([listing.longitude, listing.latitude])
         .addTo(map.current!);
 
-      // Attach click event listener to the marker's DOM element
       marker.getElement().addEventListener("click", () => {
-        handlePinClick(listing); // Trigger pin click handling logic
+        handlePinClick(listing);
       });
 
-      markers.current.push(marker); // Store the marker reference
+      markers.current.push(marker);
     });
   }, [listings]);
 
   useEffect(() => {
     if (centerOnListing && map.current) {
-      // Only center if it's a new listing
       if (
         !lastCenteredListingRef.current ||
         lastCenteredListingRef.current.id !== centerOnListing.id
       ) {
-        lastCenteredListingRef.current = centerOnListing; // Update the last centered listing
+        lastCenteredListingRef.current = centerOnListing;
         map.current.flyTo({
           center: [centerOnListing.longitude, centerOnListing.latitude],
-          zoom: 14, // Adjust zoom level if needed
-          speed: 1.5, // Animation speed
+          zoom: 14,
+          speed: 1.5,
         });
       }
     }

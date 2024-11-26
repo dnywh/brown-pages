@@ -5,40 +5,60 @@ import ListingDetails from "./ListingDetails";
 import { Listing } from "../types/Listing";
 
 export default function MapLayout() {
-  const { id: listingId } = useParams(); // Extract the listingId from the route
-  const navigate = useNavigate(); // Navigate to different routes
-  const [selectedListing, setSelectedListing] = useState<Listing | null>(null); // Track selected listing
-  const [listings, setlistings] = useState<Listing[]>([]); // Store list of listings
-  const listingsRef = useRef<Listing[]>([]); // Persist listings across re-renders
+  const { id } = useParams(); // Extract `id` to match the route parameter
+  const navigate = useNavigate();
+  const [selectedListing, setSelectedListing] = useState<Listing | null>(null);
+  const [listings, setListings] = useState<Listing[]>([]);
+  const listingsRef = useRef<Listing[]>([]);
 
-  // Fetch listings only once and update selectedListing based on listingId
-  useEffect(() => {
-    if (listingsRef.current.length === 0) {
-      fetch("/data/listings.json")
-        .then((response) => response.json())
-        .then((data: Listing[]) => {
-          listingsRef.current = data; // Cache listings
-          setlistings(data);
-          if (listingId) {
-            const foundListing = data.find(
-              (listing) => listing.id === listingId
-            );
-            setSelectedListing(foundListing || null);
-          }
-        })
-        .catch((err) => console.error("Failed to load listings.json:", err));
-    } else if (listingId) {
-      const foundListing = listingsRef.current.find(
-        (listing) => listing.id === listingId
-      );
-      setSelectedListing(foundListing || null);
+  // Fetch an individual listing
+  const loadListing = async (listingId: string) => {
+    try {
+      const response = await fetch(`/data/listings/${listingId}.json`);
+      if (!response.ok) throw new Error("Failed to fetch listing data.");
+      const listing: Listing = await response.json();
+      return listing;
+    } catch (error) {
+      console.error("Error loading listing:", error);
+      return null;
     }
-  }, [listingId]);
+  };
 
-  // Handle closing of ListingDetails
+  useEffect(() => {
+    const loadAllListings = async () => {
+      try {
+        // Hardcoded listing IDs for local development
+        const listingIDs = ["listing123", "listing456", "listing321"];
+
+        // Fetch all listings
+        const listingPromises = listingIDs.map(loadListing);
+        const loadedListings = await Promise.all(listingPromises);
+
+        // Filter out null values (failed fetches)
+        listingsRef.current = loadedListings.filter(
+          (listing): listing is Listing => listing !== null
+        );
+        setListings(listingsRef.current);
+
+        // If a specific listing ID is in the route, set it as the selected listing
+        if (id) {
+          console.log("Listing ID from route:", id);
+          const foundListing = listingsRef.current.find(
+            (listing) => listing.id === id
+          );
+          setSelectedListing(foundListing || null);
+        }
+      } catch (error) {
+        console.error("Error loading all listings:", error);
+      }
+    };
+
+    loadAllListings();
+  }, [id]);
+
   const handleCloseListingDetails = () => {
-    setSelectedListing(null); // Deselect the listing
-    navigate("/"); // Update the URL to root without affecting map position
+    setSelectedListing(null);
+    navigate("/");
   };
 
   return (
@@ -48,7 +68,7 @@ export default function MapLayout() {
         <Map
           onSelectListing={(listing) => {
             setSelectedListing(listing);
-            navigate(`/listing/${listing.id}`); // Update the URL when a listing is selected
+            navigate(`/listing/${listing.id}`);
           }}
           centerOnListing={selectedListing}
           listings={listings} // Pass listings to the Map component
@@ -56,10 +76,9 @@ export default function MapLayout() {
       </div>
 
       {/* ListingDetails Section */}
-
       <ListingDetails
         listing={selectedListing}
-        onClose={handleCloseListingDetails} // Close the listing details and reset the URL
+        onClose={handleCloseListingDetails}
       />
     </div>
   );
