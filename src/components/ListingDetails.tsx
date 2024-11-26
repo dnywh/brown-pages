@@ -15,6 +15,53 @@ function getListingName(listing: Listing) {
   return listing.name;
 }
 
+const findExistingChat = async (userID: string, listingID: string) => {
+  const chatFiles = ["/data/chats/chat123.json", "/data/chats/chat456.json"]; // Replace with dynamic generation or an automated list
+
+  try {
+    // Fetch and check each chat file
+    for (const file of chatFiles) {
+      const response = await fetch(file);
+      if (!response.ok) continue; // Skip if fetch fails
+
+      const chat = await response.json();
+
+      // Match chat by participants and listingID
+      if (chat.listingID === listingID && chat.participants.includes(userID)) {
+        return chat; // Return the matching chat
+      }
+    }
+    return null; // No matching chat found
+  } catch (error) {
+    console.error("Error finding existing chat:", error);
+    return null;
+  }
+};
+
+const createNewChat = async (userID: string, listingID: string) => {
+  const newChat = {
+    id: `chat${Date.now()}`, // Generate a unique chat ID
+    listingID,
+    participants: [userID, listingID], // Include the listingID for context
+    lastMessage: "",
+    lastUpdated: new Date().toISOString(),
+  };
+
+  try {
+    // Simulate saving the chat (local storage workaround for local dev)
+    await fetch(`/data/chats/${newChat.id}.json`, {
+      method: "POST", // Or a mock server handling POST
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newChat),
+    });
+
+    return newChat;
+  } catch (error) {
+    console.error("Error creating new chat:", error);
+    throw error;
+  }
+};
+
 export default function ListingDetails({
   listing,
   onClose,
@@ -71,7 +118,24 @@ export default function ListingDetails({
       {/* Contact Button */}
       <div className="bg-white p-4 flex rounded-2xl">
         <button
-          onClick={() => navigate(`/chat/${listing.id}`)} // Navigate to the chat view
+          onClick={async () => {
+            try {
+              // Check if a chat already exists
+              const existingChat = await findExistingChat(
+                "user000",
+                listing.id
+              ); // Replace "user000" with the logged-in user ID
+              if (existingChat) {
+                navigate(`/chat/${existingChat.id}`);
+              } else {
+                // Create a new chat
+                const newChat = await createNewChat("user000", listing.id); // Replace "user000" with the logged-in user ID
+                navigate(`/chat/${newChat.id}`);
+              }
+            } catch (error) {
+              console.error("Failed to navigate to chat:", error);
+            }
+          }}
           className="px-4 py-2 bg-green-500 text-white rounded-lg"
         >
           Contact {getListingName(listing)}
