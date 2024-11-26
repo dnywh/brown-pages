@@ -8,24 +8,53 @@ interface Message {
   timestamp: string;
 }
 
+interface Host {
+  id: string;
+  name: string;
+}
+
 export default function Chat() {
   const { id } = useParams(); // Chat ID from the route
   const [messages, setMessages] = useState<Message[]>([]); // Chat history
+  const [recipientName, setRecipientName] = useState<string>(""); // Host's name
   const [newMessage, setNewMessage] = useState(""); // Message composer
 
   useEffect(() => {
-    // Simulate fetching messages for the given chat ID
+    // Fetch the recipient's name from hosts.json
+    const fetchRecipientName = async () => {
+      try {
+        const response = await fetch("/data/hosts.json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch hosts.json");
+        }
+        const hosts: Host[] = await response.json();
+        const recipient = hosts.find((host) => host.id === id);
+        if (recipient) {
+          setRecipientName(recipient.name);
+        } else {
+          setRecipientName("Unknown Host");
+        }
+      } catch (error) {
+        console.error("Error fetching recipient name:", error);
+        setRecipientName("Error");
+      }
+    };
+
+    fetchRecipientName();
+  }, [id]);
+
+  useEffect(() => {
+    // Fetch chat messages for this conversation
     const fetchMessages = async () => {
       try {
-        // Replace this with actual API or Firebase call
-        const response = await fetch(`/data/chats/${id}.json`); // Mocked API for chat history
+        const response = await fetch(`/data/chats/${id}.json`);
         if (!response.ok) {
           throw new Error(`Failed to fetch messages for chat ID: ${id}`);
         }
         const chatHistory = await response.json();
         setMessages(chatHistory);
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching messages:", error);
       }
     };
 
@@ -48,7 +77,6 @@ export default function Chat() {
     setNewMessage("");
 
     // Simulate saving to the backend
-    // Replace with real API/Firebase call
     fetch(`/data/chats/${id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -58,7 +86,7 @@ export default function Chat() {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Chat with {id}</h2>
+      <h2 className="text-2xl font-bold mb-4">Chat with {recipientName}</h2>
       <div className="flex flex-col h-full">
         {/* Message list */}
         <div className="flex-1 overflow-y-auto border p-4 rounded-lg mb-4">
