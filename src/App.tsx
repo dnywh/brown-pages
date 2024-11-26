@@ -67,7 +67,9 @@ function HostPage({ onRouteChange }: { onRouteChange: (id: string) => void }) {
   const { id } = useParams();
 
   useEffect(() => {
-    onRouteChange(id); // Fetch and update the selected host
+    if (id) {
+      onRouteChange(id); // Fetch and update the selected host
+    }
   }, [id]);
 
   return null; // This component doesn't render UI
