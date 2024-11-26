@@ -5,60 +5,45 @@ import ListingDetails from "./ListingDetails";
 import { Listing } from "../types/Listing";
 
 export default function MapLayout() {
-  const { id } = useParams(); // Extract `id` to match the route parameter
+  const { id } = useParams(); // Extract listing ID from the URL
   const navigate = useNavigate();
-  const [selectedListing, setSelectedListing] = useState<Listing | null>(null);
   const [listings, setListings] = useState<Listing[]>([]);
   const listingsRef = useRef<Listing[]>([]);
-
-  // Fetch an individual listing
-  const loadListing = async (listingId: string) => {
-    try {
-      const response = await fetch(`/data/listings/${listingId}.json`);
-      if (!response.ok) throw new Error("Failed to fetch listing data.");
-      const listing: Listing = await response.json();
-      return listing;
-    } catch (error) {
-      console.error("Error loading listing:", error);
-      return null;
-    }
-  };
 
   useEffect(() => {
     const loadAllListings = async () => {
       try {
-        // Hardcoded listing IDs for local development
-        const listingIDs = ["listing123", "listing456", "listing321"];
+        const listingIDs = ["listing123", "listing456", "listing321"]; // Replace with dynamic IDs
 
-        // Fetch all listings
-        const listingPromises = listingIDs.map(loadListing);
-        const loadedListings = await Promise.all(listingPromises);
-
-        // Filter out null values (failed fetches)
-        listingsRef.current = loadedListings.filter(
+        const listingPromises = listingIDs.map((listingId) =>
+          fetch(`/data/listings/${listingId}.json`).then((res) =>
+            res.ok ? res.json() : null
+          )
+        );
+        const loadedListings = (await Promise.all(listingPromises)).filter(
           (listing): listing is Listing => listing !== null
         );
-        setListings(listingsRef.current);
 
-        // If a specific listing ID is in the route, set it as the selected listing
-        if (id) {
-          console.log("Listing ID from route:", id);
-          const foundListing = listingsRef.current.find(
-            (listing) => listing.id === id
-          );
-          setSelectedListing(foundListing || null);
-        }
+        listingsRef.current = loadedListings;
+        setListings(loadedListings);
       } catch (error) {
-        console.error("Error loading all listings:", error);
+        console.error("Error loading listings:", error);
       }
     };
 
     loadAllListings();
-  }, [id]);
+  }, []);
+
+  const selectedListing = id
+    ? listingsRef.current.find((listing) => listing.id === id) || null
+    : null;
+
+  const handleSelectListing = (listing: Listing) => {
+    navigate(`/listing/${listing.id}`); // Update the route when selecting a listing
+  };
 
   const handleCloseListingDetails = () => {
-    setSelectedListing(null);
-    navigate("/");
+    navigate("/"); // Navigate back to the default map view
   };
 
   return (
@@ -66,12 +51,9 @@ export default function MapLayout() {
       {/* Map Section */}
       <div className="grow">
         <Map
-          onSelectListing={(listing) => {
-            setSelectedListing(listing);
-            navigate(`/listing/${listing.id}`);
-          }}
-          centerOnListing={selectedListing}
-          listings={listings} // Pass listings to the Map component
+          onSelectListing={handleSelectListing} // Update URL when a listing is selected
+          centerOnListing={selectedListing} // Center map on the selected listing
+          listings={listings}
         />
       </div>
 

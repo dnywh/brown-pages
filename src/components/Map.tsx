@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import { Listing } from "../types/Listing";
 
 interface MapProps {
-  onSelectListing: (listing: Listing) => void; // Callback to update the selected listing
-  centerOnListing?: Listing | null; // Optional listing to center the map on
-  listings: Listing[]; // Array of listings passed from the parent
+  onSelectListing: (listing: Listing) => void;
+  centerOnListing?: Listing | null;
+  listings: Listing[];
 }
 
 export default function Map({
@@ -15,19 +15,27 @@ export default function Map({
   centerOnListing,
   listings,
 }: MapProps): JSX.Element {
-  const navigate = useNavigate(); // React Router navigation hook
-  const mapContainer = useRef<HTMLDivElement | null>(null); // Map container ref
-  const map = useRef<maptilersdk.Map | null>(null); // Map instance ref
-  const markers = useRef<maptilersdk.Marker[]>([]); // Keep track of markers
-  const lastCenteredListingRef = useRef<Listing | null>(null); // Store the last centered listing
-  const defaultCenter = { lng: 139.753, lat: 35.6844 }; // Default map center
-  const defaultZoom = 11; // Default zoom level
+  const { id } = useParams<{ id?: string }>();
+  const navigate = useNavigate();
+  const mapContainer = useRef<HTMLDivElement | null>(null);
+  const map = useRef<maptilersdk.Map | null>(null);
+  const markers = useRef<maptilersdk.Marker[]>([]);
+  const lastCenteredListingRef = useRef<Listing | null>(null);
+  const defaultCenter = { lng: 139.753, lat: 35.6844 };
+  const defaultZoom = 11;
 
   maptilersdk.config.apiKey = import.meta.env.VITE_MAPTILER_API_KEY as string;
 
+  const selectedListing = id
+    ? listings.find((listing) => listing.id === id) || null
+    : null;
+
   const handlePinClick = (listing: Listing) => {
-    navigate(`/listing/${listing.id}`); // Update the URL
-    onSelectListing(listing); // Notify parent component of the selected listing
+    if (id !== listing.id) {
+      console.log("Navigating to:", listing.id); // Log the listing ID being navigated to
+      navigate(`/listing/${listing.id}`); // Prevent duplicate navigation
+    }
+    onSelectListing(listing);
   };
 
   useEffect(() => {
@@ -61,20 +69,23 @@ export default function Map({
   }, [listings]);
 
   useEffect(() => {
-    if (centerOnListing && map.current) {
+    const targetListing = selectedListing || centerOnListing;
+
+    if (targetListing && map.current) {
+      console.log("Centering on listing:", targetListing.id); // Log the target listing
       if (
         !lastCenteredListingRef.current ||
-        lastCenteredListingRef.current.id !== centerOnListing.id
+        lastCenteredListingRef.current.id !== targetListing.id
       ) {
-        lastCenteredListingRef.current = centerOnListing;
+        lastCenteredListingRef.current = targetListing;
         map.current.flyTo({
-          center: [centerOnListing.longitude, centerOnListing.latitude],
+          center: [targetListing.longitude, targetListing.latitude],
           zoom: 14,
           speed: 1.5,
         });
       }
     }
-  }, [centerOnListing]);
+  }, [selectedListing, centerOnListing]);
 
   return (
     <div className="relative w-full h-full md:rounded-xl overflow-hidden">
