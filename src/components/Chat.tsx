@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 
 interface Message {
   id: string; // Unique message ID
-  sender: string; // "user" or "host"
+  sender: string; // "user" or "listing"
   text: string;
   timestamp: string;
 }
 
-interface Host {
+interface Listing {
   id: string;
   name: string;
 }
@@ -16,23 +16,23 @@ interface Host {
 export default function Chat() {
   const { id } = useParams(); // Chat ID from the route
   const [messages, setMessages] = useState<Message[]>([]); // Chat history
-  const [recipientName, setRecipientName] = useState<string>(""); // Host's name
+  const [recipientName, setRecipientName] = useState<string>(""); // Listing's name
   const [newMessage, setNewMessage] = useState(""); // Message composer
 
   useEffect(() => {
-    // Fetch the recipient's name from hosts.json
+    // Fetch the recipient's name from listings.json
     const fetchRecipientName = async () => {
       try {
-        const response = await fetch("/data/hosts.json");
+        const response = await fetch("/data/listings.json");
         if (!response.ok) {
-          throw new Error("Failed to fetch hosts.json");
+          throw new Error("Failed to fetch listings.json");
         }
-        const hosts: Host[] = await response.json();
-        const recipient = hosts.find((host) => host.id === id);
+        const listings: Listing[] = await response.json();
+        const recipient = listings.find((listing) => listing.id === id);
         if (recipient) {
           setRecipientName(recipient.name);
         } else {
-          setRecipientName("Unknown Host");
+          setRecipientName("Unknown Listing");
         }
       } catch (error) {
         console.error("Error fetching recipient name:", error);

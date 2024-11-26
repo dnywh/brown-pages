@@ -1,39 +1,43 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Map from "./Map";
-import HostDetails from "./HostDetails";
-import { Host } from "../types/Host";
+import ListingDetails from "./ListingDetails";
+import { Listing } from "../types/Listing";
 
 export default function MapLayout() {
-  const { id: hostId } = useParams(); // Extract the hostId from the route
+  const { id: listingId } = useParams(); // Extract the listingId from the route
   const navigate = useNavigate(); // Navigate to different routes
-  const [selectedHost, setSelectedHost] = useState<Host | null>(null); // Track selected host
-  const [hosts, setHosts] = useState<Host[]>([]); // Store list of hosts
-  const hostsRef = useRef<Host[]>([]); // Persist hosts across re-renders
+  const [selectedListing, setSelectedListing] = useState<Listing | null>(null); // Track selected listing
+  const [listings, setlistings] = useState<Listing[]>([]); // Store list of listings
+  const listingsRef = useRef<Listing[]>([]); // Persist listings across re-renders
 
-  // Fetch hosts only once and update selectedHost based on hostId
+  // Fetch listings only once and update selectedListing based on listingId
   useEffect(() => {
-    if (hostsRef.current.length === 0) {
-      fetch("/data/hosts.json")
+    if (listingsRef.current.length === 0) {
+      fetch("/data/listings.json")
         .then((response) => response.json())
-        .then((data: Host[]) => {
-          hostsRef.current = data; // Cache hosts
-          setHosts(data);
-          if (hostId) {
-            const foundHost = data.find((host) => host.id === hostId);
-            setSelectedHost(foundHost || null);
+        .then((data: Listing[]) => {
+          listingsRef.current = data; // Cache listings
+          setlistings(data);
+          if (listingId) {
+            const foundListing = data.find(
+              (listing) => listing.id === listingId
+            );
+            setSelectedListing(foundListing || null);
           }
         })
-        .catch((err) => console.error("Failed to load hosts.json:", err));
-    } else if (hostId) {
-      const foundHost = hostsRef.current.find((host) => host.id === hostId);
-      setSelectedHost(foundHost || null);
+        .catch((err) => console.error("Failed to load listings.json:", err));
+    } else if (listingId) {
+      const foundListing = listingsRef.current.find(
+        (listing) => listing.id === listingId
+      );
+      setSelectedListing(foundListing || null);
     }
-  }, [hostId]);
+  }, [listingId]);
 
-  // Handle closing of HostDetails
-  const handleCloseHostDetails = () => {
-    setSelectedHost(null); // Deselect the host
+  // Handle closing of ListingDetails
+  const handleCloseListingDetails = () => {
+    setSelectedListing(null); // Deselect the listing
     navigate("/"); // Update the URL to root without affecting map position
   };
 
@@ -42,20 +46,20 @@ export default function MapLayout() {
       {/* Map Section */}
       <div className="grow">
         <Map
-          onSelectHost={(host) => {
-            setSelectedHost(host);
-            navigate(`/host/${host.id}`); // Update the URL when a host is selected
+          onSelectListing={(listing) => {
+            setSelectedListing(listing);
+            navigate(`/listing/${listing.id}`); // Update the URL when a listing is selected
           }}
-          centerOnHost={selectedHost}
-          hosts={hosts} // Pass hosts to the Map component
+          centerOnListing={selectedListing}
+          listings={listings} // Pass listings to the Map component
         />
       </div>
 
-      {/* HostDetails Section */}
+      {/* ListingDetails Section */}
 
-      <HostDetails
-        host={selectedHost}
-        onClose={handleCloseHostDetails} // Close the host details and reset the URL
+      <ListingDetails
+        listing={selectedListing}
+        onClose={handleCloseListingDetails} // Close the listing details and reset the URL
       />
     </div>
   );

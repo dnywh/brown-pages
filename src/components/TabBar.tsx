@@ -2,10 +2,13 @@ import { NavLink, useLocation } from "react-router-dom";
 
 interface TabBarProps {
   context: string;
-  onCloseHostDetails: () => void; // Callback to close host details
+  onCloseListingDetails: () => void; // Callback to close listing details
 }
 
-export default function TabBar({ context, onCloseHostDetails }: TabBarProps) {
+export default function TabBar({
+  context,
+  onCloseListingDetails,
+}: TabBarProps) {
   const location = useLocation();
 
   if (context === "md") {
@@ -18,12 +21,12 @@ export default function TabBar({ context, onCloseHostDetails }: TabBarProps) {
             className={() =>
               `flex flex-col ${
                 location.pathname === "/" ||
-                location.pathname.startsWith("/host/")
+                location.pathname.startsWith("/listing/")
                   ? "font-bold text-black"
                   : ""
               }`
             }
-            onClick={onCloseHostDetails} // Close host details when 'Map' is clicked
+            onClick={onCloseListingDetails} // Close listing details when 'Map' is clicked
           >
             <span className="text-xs">Map</span>
           </NavLink>
@@ -54,12 +57,13 @@ export default function TabBar({ context, onCloseHostDetails }: TabBarProps) {
         to="/"
         className={() =>
           `flex grow flex-col ${
-            location.pathname === "/" || location.pathname.startsWith("/host/")
+            location.pathname === "/" ||
+            location.pathname.startsWith("/listing/")
               ? "font-bold text-black"
               : ""
           }`
         }
-        onClick={onCloseHostDetails} // Close host details when 'Map' is clicked
+        onClick={onCloseListingDetails} // Close listing details when 'Map' is clicked
       >
         <span className="text-xs">Map</span>
       </NavLink>

@@ -2,24 +2,24 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import * as maptilersdk from "@maptiler/sdk";
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import { Host } from "../types/Host";
+import { Listing } from "../types/Listing";
 
 interface MapProps {
-  onSelectHost: (host: Host) => void; // Callback to update the selected host
-  centerOnHost?: Host | null; // Optional host to center the map on
-  hosts: Host[]; // Array of hosts passed from the parent
+  onSelectListing: (listing: Listing) => void; // Callback to update the selected listing
+  centerOnListing?: Listing | null; // Optional listing to center the map on
+  listings: Listing[]; // Array of listings passed from the parent
 }
 
 export default function Map({
-  onSelectHost,
-  centerOnHost,
-  hosts,
+  onSelectListing,
+  centerOnListing,
+  listings,
 }: MapProps): JSX.Element {
   const navigate = useNavigate(); // React Router navigation hook
   const mapContainer = useRef<HTMLDivElement | null>(null); // Map container ref
   const map = useRef<maptilersdk.Map | null>(null); // Map instance ref
   const markers = useRef<maptilersdk.Marker[]>([]); // Keep track of markers
-  const lastCenteredHostRef = useRef<Host | null>(null); // Store the last centered host
+  const lastCenteredListingRef = useRef<Listing | null>(null); // Store the last centered listing
   const defaultCenter = { lng: 139.753, lat: 35.6844 }; // Default map center
   const defaultZoom = 11; // Default zoom level
 
@@ -27,9 +27,9 @@ export default function Map({
   maptilersdk.config.apiKey = import.meta.env.VITE_MAPTILER_API_KEY as string;
 
   // Function to handle pin clicks
-  const handlePinClick = (host: Host) => {
-    navigate(`/host/${host.id}`); // Update the URL
-    onSelectHost(host); // Notify parent component of the selected host
+  const handlePinClick = (listing: Listing) => {
+    navigate(`/listing/${listing.id}`); // Update the URL
+    onSelectListing(listing); // Notify parent component of the selected listing
   };
 
   useEffect(() => {
@@ -51,37 +51,37 @@ export default function Map({
     markers.current.forEach((marker) => marker.remove());
     markers.current = [];
 
-    // Add markers for hosts
-    hosts.forEach((host) => {
+    // Add markers for listings
+    listings.forEach((listing) => {
       const marker = new maptilersdk.Marker({ color: "#451900" })
-        .setLngLat([host.longitude, host.latitude])
+        .setLngLat([listing.longitude, listing.latitude])
         .addTo(map.current!);
 
       // Attach click event listener to the marker's DOM element
       marker.getElement().addEventListener("click", () => {
-        handlePinClick(host); // Trigger pin click handling logic
+        handlePinClick(listing); // Trigger pin click handling logic
       });
 
       markers.current.push(marker); // Store the marker reference
     });
-  }, [hosts]);
+  }, [listings]);
 
   useEffect(() => {
-    if (centerOnHost && map.current) {
-      // Only center if it's a new host
+    if (centerOnListing && map.current) {
+      // Only center if it's a new listing
       if (
-        !lastCenteredHostRef.current ||
-        lastCenteredHostRef.current.id !== centerOnHost.id
+        !lastCenteredListingRef.current ||
+        lastCenteredListingRef.current.id !== centerOnListing.id
       ) {
-        lastCenteredHostRef.current = centerOnHost; // Update the last centered host
+        lastCenteredListingRef.current = centerOnListing; // Update the last centered listing
         map.current.flyTo({
-          center: [centerOnHost.longitude, centerOnHost.latitude],
+          center: [centerOnListing.longitude, centerOnListing.latitude],
           zoom: 14, // Adjust zoom level if needed
           speed: 1.5, // Animation speed
         });
       }
     }
-  }, [centerOnHost]);
+  }, [centerOnListing]);
 
   return (
     <div className="relative w-full h-full md:rounded-xl overflow-hidden">

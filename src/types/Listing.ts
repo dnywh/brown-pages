@@ -1,4 +1,4 @@
-export interface Host {
+export interface Listing {
   id: string;
   name: string;
   lastActive: string;

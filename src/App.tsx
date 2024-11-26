@@ -11,13 +11,13 @@ function App() {
     <Router>
       <main className="md:p-4 flex gap-4 w-dvw h-dvh">
         {/* Shared header */}
-        <TabBar context="md" onCloseHostDetails={() => null} />
+        <TabBar context="md" onCloseListingDetails={() => null} />
         {/* Tab content */}
         <div className="grow">
           <Routes>
             {/* Map-related routes */}
             <Route path="/" element={<MapLayout />} />
-            <Route path="/host/:id" element={<MapLayout />} />
+            <Route path="/listing/:id" element={<MapLayout />} />
             {/* Other routes */}
             <Route path="/chats" element={<Chats />} />
             <Route path="/chat/:id" element={<Chat />} />
@@ -26,7 +26,7 @@ function App() {
         </div>
       </main>
 
-      <TabBar context="sm" onCloseHostDetails={() => null} />
+      <TabBar context="sm" onCloseListingDetails={() => null} />
     </Router>
   );
 }
