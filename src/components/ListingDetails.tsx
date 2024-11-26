@@ -7,12 +7,13 @@ interface ListingDetailsProps {
 }
 
 // Function to get the display name of the listing
-// function getListingName(listing: Listing) {
-//   if (listing.type === "private") {
-//     return `${listing.owner.firstName} ${listing.owner.lastName.slice(0, 1)}.`;
-//   }
-//   return listing.name;
-// }
+function getListingName(listing: Listing) {
+  if (listing.type === "private") {
+    // return `${listing.owner.firstName} ${listing.owner.lastName.slice(0, 1)}.`;
+    return `Private User ${listing.id}`;
+  }
+  return listing.name;
+}
 
 export default function ListingDetails({
   listing,
@@ -55,8 +56,7 @@ export default function ListingDetails({
       </button>
 
       {/* Listing Name */}
-      {/* <h2 className="text-2xl font-bold">{getListingName(listing)}</h2> */}
-      <h2 className="text-2xl font-bold">Listing Name Here</h2>
+      <h2 className="text-2xl font-bold">{getListingName(listing)}</h2>
 
       {/* Location Name */}
       <p className="text-gray-700">{listing.locationName}</p>
@@ -74,7 +74,7 @@ export default function ListingDetails({
           onClick={() => navigate(`/chat/${listing.id}`)} // Navigate to the chat view
           className="px-4 py-2 bg-green-500 text-white rounded-lg"
         >
-          Contact Listing
+          Contact {getListingName(listing)}
         </button>
       </div>
 
