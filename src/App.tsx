@@ -1,9 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TabBar from "./components/TabBar";
 import Chats from "./components/Chats";
 import Account from "./components/Account";
@@ -23,7 +18,7 @@ function App() {
           <Routes>
             {/* Map-related routes */}
             <Route path="/" element={<MapLayout />} />
-            <Route path="/host/:id" element={<MapRoute />} />
+            <Route path="/host/:id" element={<MapLayout />} />
             {/* Other routes */}
             <Route path="/chats" element={<Chats />} />
             <Route path="/account" element={<Account />} />
@@ -32,12 +27,6 @@ function App() {
       </main>
     </Router>
   );
-}
-
-// Wrapper component to extract `hostId` from the URL
-function MapRoute() {
-  const { id: hostId } = useParams();
-  return <MapLayout hostId={hostId} />;
 }
 
 export default App;
