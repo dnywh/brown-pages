@@ -84,7 +84,7 @@ export default function Map({
   }, [centerOnHost]);
 
   return (
-    <div className="relative w-full h-full rounded-xl overflow-hidden">
+    <div className="relative w-full h-full md:rounded-xl overflow-hidden">
       <div ref={mapContainer} className="absolute w-full h-full" />
     </div>
   );

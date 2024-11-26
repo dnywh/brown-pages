@@ -20,7 +20,7 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
     return (
       <div
         className="hidden md:flex bg-gray-50 p-4 rounded-xl 
-          md:static md:w-96 md:h-full md:overflow-y-auto items-center justify-center"
+          md:static d:w-96 md:h-full md:overflow-y-auto items-center justify-center"
       >
         <div className="text-center text-gray-500">
           <h2 className="text-lg font-semibold">Select a host on the map</h2>

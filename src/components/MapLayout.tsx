@@ -52,12 +52,11 @@ export default function MapLayout() {
       </div>
 
       {/* HostDetails Section */}
-      <div className="w-96">
-        <HostDetails
-          host={selectedHost}
-          onClose={handleCloseHostDetails} // Close the host details and reset the URL
-        />
-      </div>
+
+      <HostDetails
+        host={selectedHost}
+        onClose={handleCloseHostDetails} // Close the host details and reset the URL
+      />
     </div>
   );
 }
