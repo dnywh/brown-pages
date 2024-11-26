@@ -12,7 +12,7 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
 
   const handleClose = () => {
     onClose(); // Clear the selected host
-    navigate("/"); // Change the route TODO: this causes the map position to reset
+    navigate("/"); // Change the route
   };
 
   // Hide content when no host is selected
@@ -20,7 +20,7 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
     return (
       <div
         className="hidden md:flex bg-gray-50 p-4 rounded-xl 
-          md:static d:w-96 md:h-full md:overflow-y-auto items-center justify-center"
+          md:static md:w-96 md:h-full md:overflow-y-auto items-center justify-center"
       >
         <div className="text-center text-gray-500">
           <h2 className="text-lg font-semibold">Select a host on the map</h2>
@@ -32,8 +32,8 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
 
   return (
     <div
-      className="bg-slate-100 p-4 rounded-xl 
-        fixed top-0 left-0 w-full md:static md:w-96 h-full overflow-y-auto"
+      className="bg-slate-100 p-4
+        fixed top-0 left-0 w-full pb-16 md:pb-0 md:static md:w-96 md:rounded-xl h-full overflow-y-auto"
     >
       <button
         onClick={handleClose}

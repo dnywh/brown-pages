@@ -49,7 +49,7 @@ export default function TabBar({ context, onCloseHostDetails }: TabBarProps) {
   }
 
   return (
-    <nav className="md:hidden fixed bottom-0 w-dvw h-16 bg-white/50 backdrop-blur-md z-50 flex">
+    <nav className="md:hidden fixed bottom-0 w-dvw h-16 bg-white/50 backdrop-blur-md z-10 flex">
       <NavLink
         to="/"
         className={() =>
