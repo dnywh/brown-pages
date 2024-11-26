@@ -19,6 +19,7 @@ export default function Map({
   const mapContainer = useRef<HTMLDivElement | null>(null); // Map container ref
   const map = useRef<maptilersdk.Map | null>(null); // Map instance ref
   const markers = useRef<maptilersdk.Marker[]>([]); // Keep track of markers
+  const lastCenteredHostRef = useRef<Host | null>(null); // Store the last centered host
   const defaultCenter = { lng: 139.753, lat: 35.6844 }; // Default map center
   const defaultZoom = 11; // Default zoom level
 
@@ -65,14 +66,20 @@ export default function Map({
     });
   }, [hosts]);
 
-  // Center the map on the selected host when `centerOnHost` changes
   useEffect(() => {
     if (centerOnHost && map.current) {
-      map.current.flyTo({
-        center: [centerOnHost.longitude, centerOnHost.latitude],
-        zoom: 14, // Adjust zoom level if needed
-        speed: 1.5, // Animation speed
-      });
+      // Only center if it's a new host
+      if (
+        !lastCenteredHostRef.current ||
+        lastCenteredHostRef.current.id !== centerOnHost.id
+      ) {
+        lastCenteredHostRef.current = centerOnHost; // Update the last centered host
+        map.current.flyTo({
+          center: [centerOnHost.longitude, centerOnHost.latitude],
+          zoom: 14, // Adjust zoom level if needed
+          speed: 1.5, // Animation speed
+        });
+      }
     }
   }, [centerOnHost]);
 

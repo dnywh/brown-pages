@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Map from "./Map";
 import HostDetails from "./HostDetails";
 import { Host } from "../types/Host";
@@ -10,19 +10,26 @@ interface MapLayoutProps {
 export default function MapLayout({ hostId }: MapLayoutProps) {
   const [selectedHost, setSelectedHost] = useState<Host | null>(null);
   const [hosts, setHosts] = useState<Host[]>([]);
+  const hostsRef = useRef<Host[]>([]); // Persist hosts across re-renders
 
   useEffect(() => {
-    // Fetch host data once
-    fetch("/data/hosts.json")
-      .then((response) => response.json())
-      .then((data: Host[]) => {
-        setHosts(data);
-        if (hostId) {
-          const foundHost = data.find((host) => host.id === hostId);
-          setSelectedHost(foundHost || null);
-        }
-      })
-      .catch((err) => console.error("Failed to load hosts.json:", err));
+    // Fetch hosts only once
+    if (hostsRef.current.length === 0) {
+      fetch("/data/hosts.json")
+        .then((response) => response.json())
+        .then((data: Host[]) => {
+          hostsRef.current = data; // Cache the hosts
+          setHosts(data);
+          if (hostId) {
+            const foundHost = data.find((host) => host.id === hostId);
+            setSelectedHost(foundHost || null);
+          }
+        })
+        .catch((err) => console.error("Failed to load hosts.json:", err));
+    } else if (hostId) {
+      const foundHost = hostsRef.current.find((host) => host.id === hostId);
+      setSelectedHost(foundHost || null);
+    }
   }, [hostId]);
 
   return (
@@ -39,7 +46,9 @@ export default function MapLayout({ hostId }: MapLayoutProps) {
       <div className="w-96">
         <HostDetails
           host={selectedHost}
-          onClose={() => setSelectedHost(null)}
+          onClose={() => {
+            setSelectedHost(null); // Clear selectedHost
+          }}
         />
       </div>
     </div>

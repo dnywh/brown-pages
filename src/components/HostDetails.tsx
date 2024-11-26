@@ -11,8 +11,8 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    onClose(); // Call the parent-provided close handler
-    navigate("/"); // Navigate back to the root
+    onClose(); // Clear the selected host
+    navigate("/"); // Change the route TODO: this causes the map position to reset
   };
 
   // Hide content when no host is selected
