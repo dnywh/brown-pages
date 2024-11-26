@@ -21,7 +21,7 @@ export default function Map({
   const map = useRef<maptilersdk.Map | null>(null);
   const markers = useRef<maptilersdk.Marker[]>([]);
   const lastCenteredListingRef = useRef<Listing | null>(null);
-  const defaultCenter = { lng: 139.753, lat: 35.6844 };
+  // const defaultCenter = { lng: 139.753, lat: 35.6844 };
   const defaultZoom = 11;
 
   maptilersdk.config.apiKey = import.meta.env.VITE_MAPTILER_API_KEY as string;
@@ -44,7 +44,8 @@ export default function Map({
     map.current = new maptilersdk.Map({
       container: mapContainer.current,
       style: maptilersdk.MapStyle.STREETS,
-      center: [defaultCenter.lng, defaultCenter.lat],
+      // center: [defaultCenter.lng, defaultCenter.lat],
+      geolocate: true,
       zoom: defaultZoom,
     });
   }, []);

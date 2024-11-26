@@ -11,8 +11,9 @@ function getListingName(listing: Listing) {
   if (listing.type === "private") {
     // return `${listing.owner.firstName} ${listing.owner.lastName.slice(0, 1)}.`;
     return `Private User ${listing.id}`;
+  } else {
+    return listing.name;
   }
-  return listing.name;
 }
 
 const findExistingChat = async (userID: string, listingID: string) => {
