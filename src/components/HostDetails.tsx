@@ -33,7 +33,7 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
   return (
     <div
       className="bg-slate-100 p-4 rounded-xl 
-        fixed bottom-0 left-0 w-full md:static md:w-96 md:h-full md:overflow-y-auto"
+        fixed top-0 left-0 w-full md:static md:w-96 h-full overflow-y-auto"
     >
       <button
         onClick={handleClose}
