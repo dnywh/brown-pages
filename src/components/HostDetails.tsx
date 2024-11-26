@@ -8,8 +8,14 @@ interface HostDetailsProps {
 }
 
 export default function HostDetails({ host, onClose }: HostDetailsProps) {
-  const navigate = useNavigate(); // Use the navigate function
+  const navigate = useNavigate();
 
+  const handleClose = () => {
+    onClose(); // Call the parent-provided close handler
+    navigate("/"); // Navigate back to the root
+  };
+
+  // Hide content when no host is selected
   if (!host) {
     return (
       <div
@@ -23,11 +29,6 @@ export default function HostDetails({ host, onClose }: HostDetailsProps) {
       </div>
     );
   }
-
-  const handleClose = () => {
-    onClose(); // Call the parent-provided close handler
-    navigate("/"); // Navigate back to the root
-  };
 
   return (
     <div
