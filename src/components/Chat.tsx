@@ -30,9 +30,8 @@ interface Listing {
 export default function Chat() {
   const { id } = useParams(); // Extract chat ID from the route
   const [messages, setMessages] = useState<Message[]>([]);
-  const [chat, setChat] = useState<Chat | null>(null);
-  const [users, setUsers] = useState<{ [key: string]: User }>({});
-  const [listing, setListing] = useState<Listing | null>(null);
+  const [users] = useState<{ [key: string]: User }>({});
+  const [listing] = useState<Listing | null>(null);
   const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {

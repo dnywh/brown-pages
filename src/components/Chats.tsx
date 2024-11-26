@@ -29,20 +29,20 @@ export default function Chats() {
         const listingPromises = new Set<string>();
 
         rawChats.forEach((chat) => {
-          chat.participants.forEach((participant) =>
+          chat.participants.forEach((participant: string) =>
             userPromises.add(participant)
           );
           if (chat.listingID) listingPromises.add(chat.listingID);
         });
 
         const usersData = await Promise.all(
-          Array.from(userPromises).map((userID) =>
+          Array.from(userPromises).map((userID: string) =>
             fetch(`/data/users/${userID}.json`).then((res) => res.json())
           )
         );
 
         const listingsData = await Promise.all(
-          Array.from(listingPromises).map((listingID) =>
+          Array.from(listingPromises).map((listingID: string) =>
             fetch(`/data/listings/${listingID}.json`).then((res) => res.json())
           )
         );
@@ -58,7 +58,7 @@ export default function Chats() {
         const chatPreviews = rawChats.map((chat) => {
           const listing = listingsByID[chat.listingID];
           const otherParticipantID = chat.participants.find(
-            (id) => id !== "user000"
+            (id: string) => id !== "user000"
           ); // Replace with current user ID
           const otherParticipant = usersByID[otherParticipantID];
 
