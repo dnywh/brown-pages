@@ -20,7 +20,7 @@ main > .intro {
 
 /* Target the homepage subtitle alone */
 main > .intro > h1.subtitle {
-  max-width: 12ch;
+  max-width: 14ch;
   margin: 0 auto;
   /* The above will do the optical trick (albeit manually) until the below is supported */
   /* https://clagnut.com/blog/2424 */
@@ -89,6 +89,7 @@ article > ul {
 
   & strong {
     font-weight: 500;
+    color: var(--color-text-primary);
   }
 }
 

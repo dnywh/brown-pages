@@ -7,4 +7,7 @@
   --color-level-1: hsla(25, 49%, 92%, 1);
   --color-level-2: hsla(22, 37%, 90%, 1);
   --color-divider: hsla(22, 19%, 43%, 0.12);
+  --color-button: hsla(47, 100%, 50%, 1);
+  --color-button-darker: hsla(47, 100%, 48%, 1);
+  --color-button-darkest: hsla(47, 100%, 44%, 1);
 }

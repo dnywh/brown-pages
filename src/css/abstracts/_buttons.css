@@ -1,0 +1,23 @@
+.button {
+  background-color: var(--color-button);
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+  min-height: 3.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  border-radius: 0.125rem;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.01);
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--color-button-darker);
+  }
+  &:active {
+    background-color: var(--color-button-darkest);
+  }
+}

@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:site_name" content="{{ site.title }}" />
-
-  {# Page title #}
-  {% set guideTitleStart = "How to compost " + preposition + " " %}
-  {% set guideTitleEnd = title + " — " + site.title %}
-  {# Set a specific title for the homepage #}
-  {% if title === "Home" %}
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+    property="og:site_name" content="{{ site.title }}"/> {# Page title #}
+    {% set guideTitleStart = "How to compost " + preposition + " " %}
+    {% set guideTitleEnd = title + " — " + site.title %}
+    {# Set a specific title for the homepage #}
+    {% if title === "Home" %}
       {% set pageTitle = site.title + " — " + site.subtitle %}
-    {# Set a fancy title for the guides #}
+      {# Set a fancy title for the guides #}
     {% elif tags[0] === "guide" %}
       {% if possessive %}
         {# E.g. This adds the parent in the title. E.g. Melbourne‘s Inner West vs Sydney‘s Inner West #}
@@ -21,55 +20,52 @@
       {% else %}
         {% set pageTitle = guideTitleStart + guideTitleEnd %}
       {% endif %}
-    {# ...and a generic one for everything else #}
+      {# ...and a generic one for everything else #}
     {% else %}
       {% set pageTitle = guideTitleEnd %}
     {% endif %}
-  <title>{{ pageTitle }}</title>
-  <meta property="og:title" content="{{ pageTitle }}" />
-  
-  
-  {# Description #}
-  {% if description %}
-    {% set ogDescription = description %}
-  {% else %}
-    {% set ogDescription = site.subtitle %}
-  {% endif %}
-  <meta name="description" content="{{ ogDescription }}"/>
+    <title>{{ pageTitle }}</title>
+    <meta
+    property="og:title" content="{{ pageTitle }}"/>
 
-  {# Eleventy #}
-  {# https://darn.es/you-should-add-a-generator-tag-to-your-eleventy-site/ #}
-  <meta name="generator" content="{{ eleventy.generator }}">
 
-  {# Stylesheets #}
-  <link rel="stylesheet" href="{{ '/css/style.css' | url }}">
+    {# Description #}
+    {% if description %}
+      {% set ogDescription = description %}
+    {% else %}
+      {% set ogDescription = site.description %}
+    {% endif %}
+    <meta name="description" content="{{ ogDescription }}"/> {# Eleventy #}
+    {# https://darn.es/you-should-add-a-generator-tag-to-your-eleventy-site/ #} <meta
+    name="generator" content="{{ eleventy.generator }}"> {# Stylesheets #}
+    <link
+    rel="stylesheet" href="{{ '/css/style.css' | url }}">
 
-  {# Analytics #}
-  {% if (env.eleventyRunMode === "build") %}
-    <script async src="https://cdn.splitbee.io/sb.js"></script>
-    <script data-goatcounter="https://brownpages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  {% endif %}
+    {# Analytics #}
+    {% if (env.eleventyRunMode === "build") %}
+      <script async src="https://cdn.splitbee.io/sb.js"></script>
+      <script data-goatcounter="https://brownpages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    {% endif %}
 
-  {# Icons and theming #}
-  {# Update this image URL each time for scraping #}
-  <meta property="og:image" content="/assets/images/og-b-2023.png" />
-  {# Below is modified from https://realfavicongenerator.net/ #}
-  {# Definitive guide: https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs #}
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
-  <link rel="shortcut icon" href="/assets/images/favicon.ico">
+    {# Icons and theming #}
+    {# Update this image URL each time for scraping #}
+    <meta property="og:image" content="/assets/images/og-b-2023.png"/> {# Below is modified from https://realfavicongenerator.net/ #}
+    {# Definitive guide: https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs #} <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link
+    rel="shortcut icon" href="/assets/images/favicon.ico">
 
-  {# Anything bespoke to a page can go in these blocks #}
-  {% block headContent %}{% endblock %}
-</head>
+    {# Anything bespoke to a page can go in these blocks #}
+    {% block headContent %}{% endblock %}
+  </head>
 
-<body>
-  {% include "partials/site-header.html" %}
-  <main>
-    {% block bodyContent %}{% endblock %}
-  </main>
-  {% include "partials/site-footer.html" %} 
-</body>
+  <body>
+    {% include "partials/site-header.html" %}
+    <main>
+      {% block bodyContent %}{% endblock %}
+    </main>
+    {% include "partials/site-footer.html" %}
+  </body>
 </html>
