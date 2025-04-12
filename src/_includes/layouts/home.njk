@@ -5,16 +5,15 @@
 {% block headContent %}
   {# https://developers.google.com/search/docs/appearance/site-names#guidelines #}
   <script type="application/ld+json">
-    { "@context" : "https://schema.org", "@type" : "WebSite", "name" : "{{ site.title }}",
-                                                                          "url" : "{{ site.url }} " }
+    { "@context" : "https://schema.org", "@type" : "WebSite", "name" : "{{ site.title }}", "url" : "{{ site.url }} " }
   </script>
 {% endblock %}
 
 {% block bodyContent %}
 
   <section class="intro">
-    <h1 class="subtitle">Find a home for your food scraps, wherever you are.</h1>
-    <p>Brown Pages, the ShareWaste replacement.</p>
+    <h1 class="subtitle">{{ site.subtitle }}</h1>
+    {# <p>{{ site.description }}</p> #}
   </section>
 
   <main>
@@ -24,12 +23,10 @@
       </div>
       <article>
         <p>
-          <strong>We’re rebuilding Brown Pages to fill the gap left by ShareWaste shutting down</strong>: allowing local compost donors and hosts to connect locally and keep food scraps out of landfills.</p>
-        <p>Unfortunately, Brown Pages won’t be ready before ShareWaste shuts down, so all existing ShareWaste host data will
-          disappear.</p>
-        <p>Are you a ShareWaste user? Want to help us start off with a thriving community?</p>
-
-        <a class="button" href="https://forms.gle/ksgW4ffjAbDXyikZ7">Yes, save my ShareWaste info!</a>
+          <strong>We’ve built on top of Brown Pages to fill the gap left by ShareWaste shutting down</strong>: allowing local compost donors and hosts to connect locally and keep food scraps out of landfills.</p>
+        <p>
+          <strong>We call it Peels</strong>, and you can find a link below.</p>
+        <a class="button" href="https://www.peels.app/">Take me to Peels!</a>
       </article>
     </section>
 

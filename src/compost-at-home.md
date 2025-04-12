@@ -19,6 +19,6 @@ A full guide is coming soon. Check out these excellent resources in the meantime
 - [Composting can help fight climate change. Get started in 5 easy steps](https://www.npr.org/2020/04/07/828918397/how-to-compost-at-home) (NPR Life Kit)
 - [No backyard, no problem. You can still recycle your food waste](https://www.abc.net.au/news/science/2019-02-24/food-scrap-and-composting-solutions-for-apartments/10817702) (ABC Science)
 
-Already set up to compost at home? Consider becoming a [ShareWaste host](https://sharewaste.com) so your neighbours can donate their food waste.
+Already set up to compost at home? Consider becoming a [Peels host](https://www.peels.app) so your neighbours can donate their food waste.
 
 Also check out our [how to compost anywhere](/compost-anywhere) guide.

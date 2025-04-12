@@ -10,7 +10,7 @@ country: Australia
 score: 2
 summary:
   - Drop-off points in Maroochydore, Coolum, and Yandina
-  - High concentration of ShareWaste drop-off points in the area
+  - High concentration of Peels drop-off points in the area
 ---
 
 {% include "partials/no-residential-service.html" %}
@@ -29,12 +29,12 @@ The council has [publicly committed](https://www.sunshinecoast.qld.gov.au/living
 
 ## Drop-off points
 
-{% include "partials/high-concentration-of-sharewaste.html" %}
+{% include "partials/high-concentration-of-peels-hosts.html" %}
 
 The following community gardens also accept food waste drop-off:
 
-- [The Urban Farm](https://sharewaste.com/share-waste/entity/dLMbGf3igovjGS9kt) in Maroochydore
-- [Yandina Community Gardens](https://sharewaste.com/share-waste/entity/MkvKSQMxetXXKjxuQ)
+- [The Urban Farm](https://www.peels.app/listings/hLMc5uii9sSY) in Maroochydore
+- [Yandina Community Gardens](https://yandinacommunitygardens.com.au)
 - [Coolum Commons](https://urbankind.studio/coolum-common) in [Jones Parade Park](https://goo.gl/maps/WrfzgDktvrHnZCmm8), Coolum Beach
 
 <figure>

@@ -2,90 +2,124 @@
 {% set childGuides = collections.guides | eleventyNavigation(eleventyNavigation.key) %}
 
 {% macro renderBreadcrumbListItem(entry) %}
-<li>
-    {% if entry.url == false %}
-    {{ entry.title }}
-    {% else %}
-    <a href="{{ entry.url }}">{{ entry.title }}</a>
-    {% endif %}
-</li>
+    <li>
+        {% if entry.url == false %}
+            {{ entry.title }}
+        {% else %}
+            <a href="{{ entry.url }}">{{ entry.title }}</a>
+        {% endif %}
+    </li>
 {% endmacro %}
 
 
 {% macro renderChildGuideItem(entry) %}
-<li>
-    <a href="{{ entry.url }}">{{ entry.title }}</a>
-</li>
+    <li>
+        <a href="{{ entry.url }}">{{ entry.title }}</a>
+    </li>
 {% endmacro %}
 
 
 {% extends "layouts/base.njk" %}
 
 {% block headContent %}
-  {# Add relative date formatter #}
-  <script async src="/js/relative-date-formatter.js"></script>
+    {# Add relative date formatter #}
+    <script async src="/js/relative-date-formatter.js"></script>
 {% endblock %}
 
 
 {% block bodyContent %}
-<nav aria-label="Breadcrumb" class="breadcrumb">
-    <ul>
-        <li>
-        <a href="/">Index</a>
-        </li>
-        {% for entry in crumbs %}{{ renderBreadcrumbListItem(entry) }}{% endfor %}
-    </ul>
-</nav>
-
-
-{# {{ collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, {includeSelf: true}) | eleventyNavigationToHtml({ listClass: 'fl fl-inline', activeListItemClass: 'breadcrumb-active' }) | safe }} #}
-
-<article class="guide">
-    <header>
-    <h1><span>How to compost {{ preposition }} {% if possessive %}{{ eleventyNavigation.parent }}’s{% elseif prefix %}{{ prefix }}{% endif %}</span><br>{{ title }}</h1>
-    {# Last update datestamp #}
-    {# textContent falls back to a readable, semantic, default if JavaScript is disabled or relative-date-formatter.js doesn't work  #}
-    <small class="date">Last updated <span class="relative-date" data-iso-date="{{ page.date | toISOString }}">on <time datetime="{{ page.date }}">{{ page.date | readableDate }}</time></span></small>
-    
-    {# Show stub information if stub and not running local #}
-    {% if stub and (env.eleventyRunMode === "build") %}
-    <aside>
-        <p>
-            This page is a stub! That means it is incomplete and needs your help. <a href="mailto:drafter_preempt0f@icloud.com?subject=Suggestion%20for%20{{ title }}&body=Thanks%20for%20contributing%20to%20Brown%20Pages.%20Please%20replace%20this%20text%20with%20what%20you%20think%20should%20be%20on%20the%20{{ title }}%20page.%20Include%20references%20and%20images%20where%20relevant.%0D%0A%0D%0AYou%20can%20find%20more%20guidance%20on%20our%20Contribute%20to%20Brown%20Pages%20page%2C%20here%3A%0D%0Ahttps%3A%2F%2Fbrownpages.org%2Fcontribute"
-            >Suggest additions</a> so it can be added to the directory.
-        </p>
-    </aside>
-    {% else %}
-    <a class="button-action" href="mailto:drafter_preempt0f@icloud.com?subject=Suggestion%20for%20{{ title }}&body=Thanks%20for%20contributing%20to%20Brown%20Pages.%20Please%20replace%20this%20text%20with%20what%20you%20think%20should%20be%20on%20the%20{{ title }}%20page.%20Include%20references%20and%20images%20where%20relevant.%0D%0A%0D%0AYou%20can%20find%20more%20guidance%20on%20our%20Contribute%20to%20Brown%20Pages%20page%2C%20here%3A%0D%0Ahttps%3A%2F%2Fbrownpages.org%2Fcontribute">Suggest an edit</a>
-    {% endif %}
-    </header>
-
-    {% if summary %}
-    <section aria-label="Summary" class="summary">
-        <h2>Here’s the gist</h2>
+    <nav aria-label="Breadcrumb" class="breadcrumb">
         <ul>
-        {% for item in summary %}
-            <li>{{ item }}</li>
-        {% endfor %}
+            <li>
+                <a href="/">Index</a>
+            </li>
+            {% for entry in crumbs %}
+                {{ renderBreadcrumbListItem(entry) }}
+            {% endfor %}
         </ul>
-    </section>
-    {% endif %}
+    </nav>
 
-    {% if childGuides.length %}
-    {# Has child guides, list them #}
-    <p>Hyperlocal information is available for specific parts of {% if prefix %}{{ prefix }} {% endif %}{{ title }}:</p>
-    <ul>
-        {% for entry in childGuides %}{{ renderChildGuideItem(entry) }}{% endfor %}
-    </ul>
-    {% endif %}
 
-    {# Only show content if not a stub or if running local #}
-    {% if not stub or not (env.eleventyRunMode === "build") %}
-    {{ content | safe }}
-    {% endif %}
-</article>
-<aside class="alternatives">
-    <h2>Not enough to go on?</h2>
-    <p>Search the <a href="https://sharewaste.com/share-waste" target="_blank" rel="noopener">ShareWaste map</a> for individuals who open their backyard compost up to the public. Also check out our guide on <a href="/compost-at-home">how to compost at home</a>.</p>
-</aside>
-{% endblock %}
+    {# {{ collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.parent, {includeSelf: true}) | eleventyNavigationToHtml({ listClass: 'fl fl-inline', activeListItemClass: 'breadcrumb-active' }) | safe }} #}
+
+    <article class="guide">
+        <header>
+            <h1>
+                <span>How to compost {{ preposition }}
+                    {% if possessive %}
+                        {{ eleventyNavigation.parent }}’s
+                    {% elseif prefix %}
+                        {{ prefix }}
+                    {% endif %}
+                </span>
+                <br>{{ title }}</h1>
+                {# Last update datestamp #}
+                {# textContent falls back to a readable, semantic, default if JavaScript is disabled or relative-date-formatter.js doesn't work  #}
+                <small class="date">Last updated
+                    <span class="relative-date" data-iso-date="{{ page.date | toISOString }}">on
+                        <time datetime="{{ page.date }}">{{ page.date | readableDate }}</time>
+                    </span>
+                </small>
+
+                {# Show stub information if stub and not running local #}
+                {% if stub and (env.eleventyRunMode === "build") %}
+                    <aside>
+                        <p>
+                            This page is a stub! That means it is incomplete and needs your help.
+                            <a href="mailto:drafter_preempt0f@icloud.com?subject=Suggestion%20for%20{{ title
+                                    }}&body=Thanks%20for%20contributing%20to%20Brown%20Pages.%20Please%20replace%20this%20text%20with%20what%20you%20think%20should%20be%20on%20the%20{{
+                                    title
+                                    }}%20page.%20Include%20references%20and%20images%20where%20relevant.%0D%0A%0D%0AYou%20can%20find%20more%20guidance%20on%20our%20Contribute%20to%20Brown%20Pages%20page%2C%20here%3A%0D%0Ahttps%3A%2F%2Fbrownpages.org%2Fcontribute">
+                                Suggest additions</a>
+                            so it can be added to the directory.
+                        </p>
+                    </aside>
+                {% else %}
+                    <a
+                        class="button-action"
+                        href="mailto:drafter_preempt0f@icloud.com?subject=Suggestion%20for%20{{ title
+                            }}&body=Thanks%20for%20contributing%20to%20Brown%20Pages.%20Please%20replace%20this%20text%20with%20what%20you%20think%20should%20be%20on%20the%20{{
+                            title
+                            }}%20page.%20Include%20references%20and%20images%20where%20relevant.%0D%0A%0D%0AYou%20can%20find%20more%20guidance%20on%20our%20Contribute%20to%20Brown%20Pages%20page%2C%20here%3A%0D%0Ahttps%3A%2F%2Fbrownpages.org%2Fcontribute">
+                        Suggest an edit</a>
+                {% endif %}
+            </header>
+
+            {% if summary %}
+                <section aria-label="Summary" class="summary">
+                    <h2>Here’s the gist</h2>
+                    <ul>
+                        {% for item in summary %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            {% endif %}
+
+            {% if childGuides.length %}
+                {# Has child guides, list them #}
+                <p>Hyperlocal information is available for specific parts of
+                    {% if prefix %}
+                        {{ prefix }}
+                    {% endif %}
+                    {{ title }}:</p>
+                <ul>
+                    {% for entry in childGuides %}
+                        {{ renderChildGuideItem(entry) }}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {# Only show content if not a stub or if running local #}
+            {% if not stub or not (env.eleventyRunMode === "build") %}
+                {{ content | safe }}
+            {% endif %}
+        </article>
+        <aside class="alternatives">
+            <h2>Not enough to go on?</h2>
+            <p>Search the
+                <a href="https://www.peels.app/map" target="_blank" rel="noopener">Peels map</a>
+                for individuals who open their backyard compost up to the public. Also check out our guide on
+                <a href="/compost-at-home">how to compost at home</a>.</p>
+        </aside>
+    {% endblock %}

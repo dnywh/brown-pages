@@ -11,4 +11,4 @@ stub: true
 
 ## Drop-off points
 
-{% include "partials/high-concentration-of-sharewaste.html" %}
+{% include "partials/high-concentration-of-peels-hosts.html" %}

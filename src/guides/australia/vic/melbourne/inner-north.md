@@ -12,7 +12,7 @@ description: How to compost in Brunswick, Carlton, Coburg, Collingwood, Fitzroy,
 summary:
   - Services are highly dependent on where exactly in Melbourne’s Inner North you are
   - Residential FOGO pickup service is available in all Merri-bek City Council areas but not yet in Yarra City Council areas
-  - Other options such as community gardens and ShareWaste drop-off also exist
+  - Other options such as community gardens and Peels drop-off also exist
 ---
 
 Melbourne’s Inner North covers suburbs split across several council areas, with each council offering widely differing composting services.
@@ -58,7 +58,7 @@ Yarra City Council runs free online composting workshops via [My Smart Garden](h
 
 ## Drop-off points
 
-{% include "partials/high-concentration-of-sharewaste.html" %}
+{% include "partials/high-concentration-of-peels-hosts.html" %}
 
 The following community gardens also accept food waste drop-off:
 
